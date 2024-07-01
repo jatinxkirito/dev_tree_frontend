@@ -1,0 +1,35 @@
+@import url("https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+::-webkit-scrollbar {
+  display: none;
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0rem;
+  text-align: center;
+}
+
+.card {
+  padding: 2em;
+}
+
+.Mui-selected {
+  animation: none;
+  color: #0e6c0d;
+}
+.css-1bjk3jo-MuiButtonBase-root-MuiBottomNavigationAction-root {
+  color: #0e6c0d;
+}
+.css-118p9r0-MuiButtonBase-root-MuiBottomNavigationAction-root {
+  animation: none;
+  color: #0e6c0d;
+}
+.css-i4bv87-MuiSvgIcon-root {
+  animation: none;
+  transition: none;
+}

@@ -1,0 +1,12 @@
+.appbar {
+  width: 100%;
+  background-color: #047857;
+  /* display: inline-block; */
+  /* margin-left: 0%;
+  margin-right: 0%;
+  justify-content: space-around; */
+}
+.no_pad {
+  padding-left: 0;
+  padding-right: 0;
+}
