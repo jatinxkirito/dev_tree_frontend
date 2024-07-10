@@ -1,7 +1,11 @@
 import { SpaRounded } from "@mui/icons-material";
 import { Typography } from "@mui/material";
+import axios from "axios";
 import Button from "@mui/material/Button";
+import { googleAuth } from "../auth/googleAuth";
+import { useNavigate } from "react-router-dom";
 export default function LandingScreen() {
+  const navigate = useNavigate();
   return (
     <div
       style={{
@@ -77,6 +81,9 @@ export default function LandingScreen() {
             backgroundColor: "#049363",
             boxShadow: "#049363 0 0 1rem",
           },
+        }}
+        onClick={() => {
+          window.location = googleAuth();
         }}
       >
         Sign up

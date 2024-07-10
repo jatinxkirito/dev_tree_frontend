@@ -11,6 +11,7 @@ import Cp from "./screens/Cp";
 import Professional from "./screens/Professional";
 
 import Work from "./screens/Work";
+import { GoogleCallback } from "./auth/googleAuth";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -19,15 +20,12 @@ const queryClient = new QueryClient({
     },
   },
 });
-var Lf = () => {
-  return (
-    <div>
-      <div>Ghar hai ye hamara</div> <Outlet />
-    </div>
-  );
-};
 
 const router = createBrowserRouter([
+  {
+    path: "/auth/google/callback",
+    Component: GoogleCallback,
+  },
   {
     path: "/",
     Component: Layou,
@@ -51,12 +49,6 @@ const router = createBrowserRouter([
       {
         path: "/:name",
         Component: Home,
-        children: [
-          {
-            path: "img/:id",
-            Component: Lf,
-          },
-        ],
       },
     ],
   },
