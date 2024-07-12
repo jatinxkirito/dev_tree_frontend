@@ -1,4 +1,4 @@
-import { redirect, useNavigate, useParams } from "react-router-dom";
+import { Navigate, redirect, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { Label } from "@mui/icons-material";
@@ -13,23 +13,33 @@ export const googleAuth = () => {
 export function GoogleCallback() {
   const params = new URLSearchParams(window.location.search);
   const code = params.get("code");
-
-  //console.log(code);
+  const navigate = useNavigate();
   const { isLoading, error, data } = useQuery({
     queryKey: `userinfoData`,
     queryFn: async function () {
       const { data } = await axios.get(
         `${import.meta.env.VITE_BACKEND_URL}/auth/google/callback?code=${code}`
       );
-      // console.log(data);
+      console.log(data);
+      const x = await axios.get(
+        `${import.meta.env.VITE_BACKEND_URL}/api/getUser/${data.profile.email}`
+      );
+      console.log(x.data.status);
+      if (x.data.status == "userExists") {
+        // console.log(x.data.data);
+        navigate(`/${x.data.data.username}`);
+        return x.data;
+      }
+
       return data;
     },
   });
 
   if (isLoading) return <div>Loading</div>;
   console.log(error);
-  if (error) return <div>error</div>;
+  if (error || !data) return <div>error</div>;
   console.log(data);
+  // if (data.status == "userExists") Navigate(`/${data.username}`);
 
   return (
     <form
