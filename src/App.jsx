@@ -1,6 +1,7 @@
 import Layou from "./Layout";
 import "./App.css";
 // import "./index.css";
+import { CookiesProvider } from "react-cookie";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 
@@ -61,9 +62,11 @@ const router = createBrowserRouter([
 // ]);
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
-    </QueryClientProvider>
+    <CookiesProvider>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
+    </CookiesProvider>
   );
 }
 

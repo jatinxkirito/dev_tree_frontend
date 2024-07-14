@@ -2,6 +2,8 @@ import { Navigate, redirect, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { Label } from "@mui/icons-material";
+import { useCookies } from "react-cookie";
+import { encryptIt } from "./crypt";
 const REDIRECT_URI = "http://localhost:5173/auth/google/callback";
 export const googleAuth = () => {
   //console.log(import.meta.env.VITE_CLIENT_ID);
@@ -14,6 +16,7 @@ export function GoogleCallback() {
   const params = new URLSearchParams(window.location.search);
   const code = params.get("code");
   const navigate = useNavigate();
+  const [cookies, setCookie] = useCookies(["userDevtree"]);
   const { isLoading, error, data } = useQuery({
     queryKey: `userinfoData`,
     queryFn: async function () {
@@ -27,6 +30,9 @@ export function GoogleCallback() {
       console.log(x.data.status);
       if (x.data.status == "userExists") {
         // console.log(x.data.data);
+        setCookie("userDevtree", encryptIt(x.data.data.username), {
+          path: "/",
+        });
         navigate(`/${x.data.data.username}`);
         return x.data;
       }
@@ -56,6 +62,7 @@ export function GoogleCallback() {
             `${import.meta.env.VITE_BACKEND_URL}/api/`,
             x
           );
+          setCookie("userDevtree", encryptIt(x.userName));
         } catch (err) {
           console.log(err);
         }

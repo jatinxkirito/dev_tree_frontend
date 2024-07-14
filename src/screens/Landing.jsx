@@ -4,8 +4,19 @@ import axios from "axios";
 import Button from "@mui/material/Button";
 import { googleAuth } from "../auth/googleAuth";
 import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
+import { decryptIt } from "../auth/crypt";
+import { useEffect } from "react";
 export default function LandingScreen() {
   const navigate = useNavigate();
+  const [cookies, setCookie] = useCookies(["userDevtree"]);
+  useEffect(() => {
+    if (cookies.userDevtree) {
+      const p = decryptIt(cookies.userDevtree);
+      // console.log(p);
+      navigate(`/${p}`);
+    }
+  });
   return (
     <div
       style={{
