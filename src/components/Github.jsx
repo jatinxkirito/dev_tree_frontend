@@ -4,7 +4,7 @@ import { CircularProgress } from "@mui/material";
 
 import github from "../assets/githublogo.png";
 
-export default function Github({ GithubId = "jatinxkirito" }) {
+export default function Github({ GithubId = undefined }) {
   const { isLoading, error, data } = useQuery({
     queryKey: `Github${Github}Data`,
     queryFn: () =>
@@ -12,6 +12,7 @@ export default function Github({ GithubId = "jatinxkirito" }) {
         res.json()
       ),
   });
+  if (isLoading) return <div>Loading</div>;
 
   return (
     <Container>

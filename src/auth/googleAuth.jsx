@@ -1,4 +1,4 @@
-import { Navigate, redirect, useNavigate, useParams } from "react-router-dom";
+import { Navigate, redirect, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { Label } from "@mui/icons-material";
@@ -32,6 +32,7 @@ export function GoogleCallback() {
         // console.log(x.data.data);
         setCookie("userDevtree", encryptIt(x.data.data.username), {
           path: "/",
+          expires: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000),
         });
         navigate(`/${x.data.data.username}`);
         return x.data;
@@ -62,7 +63,10 @@ export function GoogleCallback() {
             `${import.meta.env.VITE_BACKEND_URL}/api/`,
             x
           );
-          setCookie("userDevtree", encryptIt(x.userName));
+          setCookie("userDevtree", encryptIt(x.userName), {
+            path: "/",
+            expires: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000),
+          });
         } catch (err) {
           console.log(err);
         }

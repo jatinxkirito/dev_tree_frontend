@@ -3,12 +3,13 @@ import * as React from "react";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import SchoolRoundedIcon from "@mui/icons-material/SchoolRounded";
 import { LaptopRounded, WorkRounded } from "@mui/icons-material";
 //import "./index.css";
 
 export default function LabelBottomNavigation() {
+  const { name } = useParams();
   const [value, setValue] = React.useState("Home");
   const navigate = useNavigate();
 
@@ -40,7 +41,7 @@ export default function LabelBottomNavigation() {
         //sx={{ borderRadius: "1.5rem" }}
         icon={<HomeRoundedIcon />}
         onClick={() => {
-          navigate("/krto");
+          navigate(`/${name}`);
         }}
         // sx={{ color: "#047857" }}
       />
@@ -49,7 +50,7 @@ export default function LabelBottomNavigation() {
         value="Professional"
         icon={<SchoolRoundedIcon />}
         onClick={() => {
-          navigate("/krto/education");
+          navigate(`/${name}/education`);
         }}
       />
       <BottomNavigationAction
@@ -57,7 +58,7 @@ export default function LabelBottomNavigation() {
         value="Work"
         icon={<WorkRounded />}
         onClick={() => {
-          navigate("/krto/projects");
+          navigate(`/${name}/projects`);
         }}
       />
       <BottomNavigationAction
@@ -65,7 +66,7 @@ export default function LabelBottomNavigation() {
         value="Coding"
         icon={<LaptopRounded />}
         onClick={() => {
-          navigate("/krto/cp");
+          navigate(`/${name}/cp`);
         }}
       />
     </BottomNavigation>
