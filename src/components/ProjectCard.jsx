@@ -64,17 +64,9 @@ export default function ProjectCard({ img, info, title, github, deploy }) {
         }}
       >
         {deploy && (
-          <IconLink
-            Component={LinkIcon}
-            color="black"
-            link="https://github.com/jatinxkirito"
-          />
+          <IconLink Component={LinkIcon} color="black" link={github} />
         )}
-        <IconLink
-          Component={GitHub}
-          color="black"
-          link="https://github.com/jatinxkirito"
-        />
+        <IconLink Component={GitHub} color="black" link={deploy} />
       </div>
     </div>
   );

@@ -21,7 +21,7 @@ export default function Work() {
   return (
     <div>
       <Github GithubId={github} />
-      <Project />
+      <Project projectList={data.data.projects} />
     </div>
   );
 }

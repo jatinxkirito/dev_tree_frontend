@@ -1,7 +1,7 @@
 import Container from "./Container";
 import ProjectCard from "./ProjectCard";
 
-export default function Project() {
+export default function Project({ projectList }) {
   return (
     <Container>
       <div
@@ -24,36 +24,21 @@ export default function Project() {
           justifyContent: "center",
         }}
       >
-        <ProjectCard
-          img="https://www.security101.com/hs-fs/hubfs/Intelligent-and-collaborative-video-surveillance-systems.png?width=800&height=400&name=Intelligent-and-collaborative-video-surveillance-systems.png"
-          title="Ready Player One"
-          deploy="dkl"
-          info={`Sword Art Online (Japanese: ソードアート・オンライン, Hepburn: Sōdo Āto Onrain) is a Japanese light novel series written by Reki Kawahara and illustrated by abec. The series takes place in the 2020s and focuses on protagonists Kazuto "Kirito" Kirigaya and Asuna Yuuki as they play through various virtual reality MMORPG worlds, and later their involvement in the matters of a simulated civilization`}
-        />
-        <ProjectCard
-          img="https://www.security101.com/hs-fs/hubfs/Intelligent-and-collaborative-video-surveillance-systems.png?width=800&height=400&name=Intelligent-and-collaborative-video-surveillance-systems.png"
-          title="Ready Player One"
-          deploy="dkl"
-          info={`Sword Art Online (Japanese: ソードアート・オンライン, Hepburn: Sōdo Āto Onrain) is a Japanese light novel series written by Reki Kawahara and illustrated by abec. The series takes place in the 2020s and focuses on protagonists Kazuto "Kirito" Kirigaya and Asuna Yuuki as they play through various virtual reality MMORPG worlds, and later their involvement in the matters of a simulated civilization`}
-        />
-        <ProjectCard
-          img="https://www.security101.com/hs-fs/hubfs/Intelligent-and-collaborative-video-surveillance-systems.png?width=800&height=400&name=Intelligent-and-collaborative-video-surveillance-systems.png"
-          title="Ready Player One"
-          deploy="dkl"
-          info={`Sword Art Online (Japanese: ソードアート・オンライン, Hepburn: Sōdo Āto Onrain) is a Japanese light novel series written by Reki Kawahara and illustrated by abec. The series takes place in the 2020s and focuses on protagonists Kazuto "Kirito" Kirigaya and Asuna Yuuki as they play through various virtual reality MMORPG worlds, and later their involvement in the matters of a simulated civilization`}
-        />
-        <ProjectCard
-          img="https://www.security101.com/hs-fs/hubfs/Intelligent-and-collaborative-video-surveillance-systems.png?width=800&height=400&name=Intelligent-and-collaborative-video-surveillance-systems.png"
-          title="Ready Player One"
-          deploy="dkl"
-          info={`Sword Art Online (Japanese: ソードアート・オンライン, Hepburn: Sōdo Āto Onrain) is a Japanese light novel series written by Reki Kawahara and illustrated by abec. The series takes place in the 2020s and focuses on protagonists Kazuto "Kirito" Kirigaya and Asuna Yuuki as they play through various virtual reality MMORPG worlds, and later their involvement in the matters of a simulated civilization`}
-        />
-        <ProjectCard
-          img="https://www.security101.com/hs-fs/hubfs/Intelligent-and-collaborative-video-surveillance-systems.png?width=800&height=400&name=Intelligent-and-collaborative-video-surveillance-systems.png"
-          title="Ready Player One"
-          deploy="dkl"
-          info={`Sword Art Online (Japanese: ソードアート・オンライン, Hepburn: Sōdo Āto Onrain) is a Japanese light novel series written by Reki Kawahara and illustrated by abec. The series takes place in the 2020s and focuses on protagonists Kazuto "Kirito" Kirigaya and Asuna Yuuki as they play through various virtual reality MMORPG worlds, and later their involvement in the matters of a simulated civilization`}
-        />
+        {projectList.length == 0 && (
+          <div>Looks like we still have some work to do</div>
+        )}
+        {projectList.map((d, i) => {
+          return (
+            <ProjectCard
+              key={i}
+              img={d.image}
+              title={d.name}
+              info={d.description}
+              github={d.githubLink}
+              deploy={d.hostedLink}
+            />
+          );
+        })}
       </div>
     </Container>
   );
