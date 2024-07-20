@@ -14,6 +14,8 @@ export default function Cc({ CcId = "jatin_kirito" }) {
   });
 
   if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>error</div>;
+  if (data.success == false) return <div>error</div>;
   var contestRating = data.ratingData.map((ct) => {
     return ct.rating;
   });

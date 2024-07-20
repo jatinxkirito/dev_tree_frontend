@@ -1,6 +1,6 @@
 import { PieChart } from "@mui/x-charts";
 import { useQuery } from "@tanstack/react-query";
-import { useEffect } from "react";
+
 function Ele({ label, color, solvedCount, totalCount }) {
   return (
     <div

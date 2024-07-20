@@ -15,23 +15,21 @@ import IconLink from "../components/IconLink";
 import Skl from "../components/Skill";
 import Graph from "../components/graph";
 import LcGraph from "../components/LcGraph";
-const Skls = [
-  "C++",
-  "Javascript",
-  "Python",
-  "Machine Learning",
-  "Deep Learning",
-  "Data Science",
-  "Computer Vision",
-  "Competitive Programming",
-  "Web Development",
-  "Node.Js",
-  "React.Js",
-  "OpenCV",
-  "Git",
-  "Pandas",
-];
+import { useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+
 export default function Home() {
+  const { name } = useParams();
+  const { isLoading, error, data } = useQuery({
+    queryKey: `Home${name}Data`,
+    queryFn: () =>
+      fetch(`${import.meta.env.VITE_BACKEND_URL}/api/${name}/base`).then(
+        (res) => res.json()
+      ),
+  });
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>error</div>;
+  console.log(data);
   return (
     <Container>
       <div
@@ -47,7 +45,8 @@ export default function Home() {
         Hey, I am
       </div>
       <Avatar
-        src={dp}
+        src={data.data.picture}
+        alt={data.data.name}
         sx={{ height: "8rem", width: "8rem" }}
         className="shadow-lg shadow-gray-800"
       />
@@ -62,7 +61,7 @@ export default function Home() {
           maxWidth: "30rem",
         }}
       >
-        Kirito
+        {data.data.name}
       </div>
       <div
         style={{
@@ -75,36 +74,36 @@ export default function Home() {
           fontWeight: "bold",
         }}
       >
-        Software Engineer
+        {data.data.job}
       </div>
       <div>
-        <IconLink
-          Component={LinkedIn}
-          color="#047857"
-          link="https://www.linkedin.com/in/jatin-madaan-949423221/"
-        />
-        <IconLink
-          Component={MailRounded}
-          color="#047857"
-          link="mailto:sjmadaan143@gmail.com"
-        />
-        <IconLink
-          Component={GitHub}
-          color="#047857"
-          link="https://github.com/jatinxkirito"
-        />
+        {data.data.linkedin && (
+          <IconLink
+            Component={LinkedIn}
+            color="#047857"
+            link={data.data.linkedin}
+          />
+        )}
+        {data.data.email && (
+          <IconLink
+            Component={MailRounded}
+            color="#047857"
+            link="mailto:sjmadaan143@gmail.com"
+          />
+        )}
+        {data.data.github && (
+          <IconLink
+            Component={GitHub}
+            color="#047857"
+            link={`https://github.com/${data.data.github}`}
+          />
+        )}
       </div>
-      <div style={{ marginTop: "2rem", color: "black" }}>
-        I am a third year student at{" "}
-        {<b>Indian Institute of Information Technology, Sonepat</b>}. I am a
-        dedicated and inquisitive individual with a passion for exploration. My
-        expertise lies in Competitive Programming, and I possess strong skills
-        in various areas, including Data Science, Machine Learning, Data
-        Structures and Algorithms, Computer Vision, and Web Development. I am
-        driven by a keen interest in the fields of data science and machine
-        learning, constantly seeking opportunities to enhance my knowledge and
-        contribute to innovative projects.
-      </div>
+      {data.data.description && (
+        <div style={{ marginTop: "2rem", color: "black" }}>
+          {data.data.description}
+        </div>
+      )}
       <div
         style={{
           color: "black",
@@ -127,7 +126,7 @@ export default function Home() {
           flexWrap: "wrap",
         }}
       >
-        {Skls.map((skil) => {
+        {data.data.skills.map((skil) => {
           return <Skl skill={skil} key={skil} />;
         })}
       </div>

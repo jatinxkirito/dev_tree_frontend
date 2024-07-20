@@ -5,18 +5,9 @@ import TimelineConnector from "@mui/lab/TimelineConnector";
 import TimelineContent from "@mui/lab/TimelineContent";
 import TimelineDot from "@mui/lab/TimelineDot";
 import Container from "./Container";
+import { useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 
-const lst = [
-  {
-    Name: "SigmaMinds Research Labs",
-    Position: "Machine Learning Intern",
-    Location: "Remote",
-    StartTime: "Jan,2024",
-    EndTime: "March,2024",
-    Techstack: "OpenCV, Tensorflow, numpy, pandas, matplotlib",
-    Description: `Implemented various deep learning models like resnet, image net, vision transformers and image processingalgorithms for identification of dysgraphia in children by the process of analysing handwriting. Also implemented various feature extraction algorithms from a research paper to get hand writing features like pen pressure, slant angle etc.`,
-  },
-];
 function Exp({ data, tr }) {
   return (
     <TimelineItem>
@@ -51,10 +42,10 @@ function Exp({ data, tr }) {
                 fontWeight: "bold",
               }}
             >
-              {data.Name}
+              {data.company}
             </p>
             <p style={{ fontSize: "0.8rem", marginTop: "auto" }}>
-              {data.Location}
+              {data.location}
             </p>
           </div>
           <div
@@ -65,9 +56,9 @@ function Exp({ data, tr }) {
               width: "100%",
             }}
           >
-            <div style={{ fontWeight: "bold" }}>{data.Position}</div>
+            <div style={{ fontWeight: "bold" }}>{data.jobTitle}</div>
             <div style={{ fontSize: "0.8rem", marginTop: "auto" }}>
-              {data.StartTime} - {data.EndTime}
+              {data.startDate} - {data.endDate}
             </div>
           </div>
           <div
@@ -80,7 +71,7 @@ function Exp({ data, tr }) {
           >
             Techstack:{"  "}
             <p style={{ color: "#052e16", fontWeight: "bold" }}>
-              {data.Techstack}
+              {data.skills}
             </p>
           </div>
           <div
@@ -91,7 +82,7 @@ function Exp({ data, tr }) {
               textWrap: "pretty",
             }}
           >
-            {data.Description}
+            {data.description}
             {/* Techstack:{"  "}
             <p style={{ color: "#052e16", fontWeight: "bold" }}>{data.Score}</p> */}
           </div>
@@ -101,6 +92,17 @@ function Exp({ data, tr }) {
   );
 }
 export default function Work() {
+  const { name } = useParams();
+  const { isLoading, error, data } = useQuery({
+    queryKey: `experience${name}Data`,
+    queryFn: () =>
+      fetch(`${import.meta.env.VITE_BACKEND_URL}/api/${name}/experience`).then(
+        (res) => res.json()
+      ),
+  });
+  //console.log(data);
+  if (isLoading) return <div>Loading...</div>;
+  var lst = data.data.work;
   return (
     <Container>
       <div

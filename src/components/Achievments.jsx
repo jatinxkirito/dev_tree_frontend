@@ -1,14 +1,16 @@
+import { useQuery } from "@tanstack/react-query";
 import Container from "./Container";
 import CircleIcon from "@mui/icons-material/Circle";
-const lst = [
-  "Expert at Codeforces(max 1627)",
-  "4 star at codechef(max 1993)",
-  "Knight at LeetCode(max 1946)",
-  "Rank 55 at ICPC Kanpur Regionals 2023",
-  "AIR 2 in Mercer Mettl CodeSmash 2.0",
-  "Top 50 in Mercer Mettl AI Arena",
-  "Rank 1 in Intra College Coding Competition Blaze Battle (IIIT Sonepat)",
-];
+import { useParams } from "react-router-dom";
+// const lst = [
+//   "Expert at Codeforces(max 1627)",
+//   "4 star at codechef(max 1993)",
+//   "Knight at LeetCode(max 1946)",
+//   "Rank 55 at ICPC Kanpur Regionals 2023",
+//   "AIR 2 in Mercer Mettl CodeSmash 2.0",
+//   "Top 50 in Mercer Mettl AI Arena",
+//   "Rank 1 in Intra College Coding Competition Blaze Battle (IIIT Sonepat)",
+// ];
 function Facts({ data }) {
   return (
     <li
@@ -39,6 +41,16 @@ function Facts({ data }) {
   );
 }
 export default function Achievments() {
+  const { name } = useParams();
+  const { isLoading, error, data } = useQuery({
+    queryKey: `Achievments${name}Data`,
+    queryFn: () =>
+      fetch(`${import.meta.env.VITE_BACKEND_URL}/api/${name}/achievments`).then(
+        (res) => res.json()
+      ),
+  });
+  if (isLoading) return <div>Loading...</div>;
+  var lst = data.data.achievments;
   return (
     <Container>
       <div

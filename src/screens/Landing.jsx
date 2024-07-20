@@ -17,6 +17,7 @@ export default function LandingScreen() {
       navigate(`/${p}`);
     }
   });
+
   return (
     <div
       style={{

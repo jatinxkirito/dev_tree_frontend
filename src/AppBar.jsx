@@ -14,27 +14,39 @@ import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import "./AppBar.css";
 import { SpaRounded } from "@mui/icons-material";
+import { useCookies } from "react-cookie";
+import { decryptIt } from "./auth/crypt";
+import axios from "axios";
+import { googleAuth } from "./auth/googleAuth";
 const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 export default function ResponsiveAppBar() {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [cookies, setCookie] = useCookies(["userDevtree"]);
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
+  const [ico, setIco] = React.useState("Loading");
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
+  React.useEffect(() => {
+    let ignore = false;
+    if (cookies.userDevtree && !ignore) {
+      const x = decryptIt(cookies.userDevtree);
 
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
+      axios
+        .get(`${import.meta.env.VITE_BACKEND_URL}/api/${x}/image`)
+        .then((res) => {
+          //setName(x);
+          setIco(res.data.data.picture);
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+          setIco("Error");
+        });
+    }
+    return () => {
+      ignore = true;
+    };
+  }, [cookies]);
 
   return (
     <AppBar disableGutters position="static" className="appbar">
@@ -86,50 +98,41 @@ export default function ResponsiveAppBar() {
           >
             DEV-TREE
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {/* {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                {page}
-              </Button>
-            ))} */}
-          </Box>
+          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}></Box>
+          {!cookies.userDevtree && (
+            <Button
+              variant="contained"
+              sx={{
+                borderRadius: "1rem",
+                borderWidth: "0.1rem",
+                backgroundColor: "#10b981",
+                // fontWeight: "bold",
+                fontSize: "1rem",
 
-          <Box sx={{ flexGrow: 0 }}>
+                "&:hover": {
+                  backgroundColor: "#049363",
+                  boxShadow: "#049363 0 0 1rem",
+                },
+              }}
+              onClick={() => {
+                window.location = googleAuth();
+              }}
+            >
+              Sign In
+            </Button>
+          )}
+          {cookies.userDevtree && (
             <Tooltip title="Open settings">
               <IconButton
-                onClick={handleOpenUserMenu}
+                onClick={() => {
+                  console.log("Get clicking");
+                }}
                 sx={{ p: 0, height: "1.5rem" }}
               >
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt={decryptIt(cookies.userDevtree)} src={ico} />
               </IconButton>
             </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
+          )}
         </Toolbar>
       </Container>
     </AppBar>
