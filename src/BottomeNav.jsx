@@ -3,7 +3,7 @@ import * as React from "react";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import SchoolRoundedIcon from "@mui/icons-material/SchoolRounded";
 import { LaptopRounded, WorkRounded } from "@mui/icons-material";
 //import "./index.css";
@@ -12,7 +12,13 @@ export default function LabelBottomNavigation() {
   const { name } = useParams();
   const [value, setValue] = React.useState("Home");
   const navigate = useNavigate();
-
+  const currentPath = useLocation().pathname;
+  React.useEffect(() => {
+    const pt = currentPath.split("/");
+    let v = "Home";
+    if (pt.length == 3) v = pt[pt.length - 1];
+    setValue(v);
+  }, [currentPath]);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -47,7 +53,7 @@ export default function LabelBottomNavigation() {
       />
       <BottomNavigationAction
         label="Proffesional"
-        value="Professional"
+        value="education"
         icon={<SchoolRoundedIcon />}
         onClick={() => {
           navigate(`/${name}/education`);
@@ -55,7 +61,7 @@ export default function LabelBottomNavigation() {
       />
       <BottomNavigationAction
         label="Work"
-        value="Work"
+        value="projects"
         icon={<WorkRounded />}
         onClick={() => {
           navigate(`/${name}/projects`);
@@ -63,7 +69,7 @@ export default function LabelBottomNavigation() {
       />
       <BottomNavigationAction
         label="Coding"
-        value="Coding"
+        value="cp"
         icon={<LaptopRounded />}
         onClick={() => {
           navigate(`/${name}/cp`);
