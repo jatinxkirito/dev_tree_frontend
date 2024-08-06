@@ -13,6 +13,11 @@ import Professional from "./screens/Professional";
 
 import Work from "./screens/Work";
 import { GoogleCallback } from "./auth/googleAuth";
+import EditLayout from "./Editpage/EditLayout";
+import EducationForm from "./Editpage/components/Education";
+import ExperienceForm from "./Editpage/components/Experience";
+import CodingForm from "./Editpage/components/Coding";
+import AchievementForm from "./Editpage/components/Achievments";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -26,6 +31,28 @@ const router = createBrowserRouter([
   {
     path: "/auth/google/callback",
     Component: GoogleCallback,
+  },
+  {
+    path: "/:name/edit",
+    Component: EditLayout,
+    children: [
+      {
+        path: "/:name/edit/edu",
+        Component: EducationForm,
+      },
+      {
+        path: "/:name/edit/exp",
+        Component: ExperienceForm,
+      },
+      {
+        path: "/:name/edit/cp",
+        Component: CodingForm,
+      },
+      {
+        path: "/:name/edit/acv",
+        Component: AchievementForm,
+      },
+    ],
   },
   {
     path: "/",
@@ -54,12 +81,7 @@ const router = createBrowserRouter([
     ],
   },
 ]);
-// const router = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <h1 className="text-3xl font-bold underline">Hello world!</h1>,
-//   },
-// ]);
+
 function App() {
   return (
     <CookiesProvider>
