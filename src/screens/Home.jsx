@@ -4,17 +4,10 @@ import Container from "../components/Container";
 import dp from "../assets/krto.png";
 
 import "../App.css";
-import {
-  GitHub,
-  LinkedIn,
-  Mail,
-  MailLockRounded,
-  MailRounded,
-} from "@mui/icons-material";
+import { GitHub, LinkedIn, MailRounded } from "@mui/icons-material";
 import IconLink from "../components/IconLink";
 import Skl from "../components/Skill";
-import Graph from "../components/graph";
-import LcGraph from "../components/LcGraph";
+
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 

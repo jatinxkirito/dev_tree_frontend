@@ -18,6 +18,7 @@ import EducationForm from "./Editpage/components/Education";
 import ExperienceForm from "./Editpage/components/Experience";
 import CodingForm from "./Editpage/components/Coding";
 import AchievementForm from "./Editpage/components/Achievments";
+import HomeForm from "./Editpage/components/Home";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
     path: "/:name/edit",
     Component: EditLayout,
     children: [
+      {
+        path: "/:name/edit/",
+        Component: HomeForm,
+      },
       {
         path: "/:name/edit/edu",
         Component: EducationForm,

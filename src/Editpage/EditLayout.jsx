@@ -13,10 +13,7 @@ export default function EditLayout() {
   var f = currentPath != "/";
   console.log(currentPath);
   return (
-    <body
-      className="flex items-center flex-col justify-between"
-      style={{ padding: 0 }}
-    >
+    <body className="flex items-center flex-col" style={{ padding: 0 }}>
       <ResponsiveAppBar />
       <div style={{ display: "flex", flexDirection: "row", width: "80%" }}>
         <SideBar />
