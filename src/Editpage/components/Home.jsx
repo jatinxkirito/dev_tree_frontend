@@ -3,10 +3,21 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import ImageUploader from "../../utils/ImageUploader";
 import { Avatar } from "@mui/material";
+import axios from "axios";
 
 export default function HomeForm() {
   const { name } = useParams();
   const [editWindow, toggleeditWindow] = useState(false);
+  const updateImage = async (url) => {
+    try {
+      const df = await axios.patch(
+        `${import.meta.env.VITE_BACKEND_URL}/api/${name}`,
+        { picture: url }
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  };
   const { isLoading, error, data } = useQuery({
     queryKey: `Home${name}Data`,
     queryFn: () =>
@@ -22,6 +33,7 @@ export default function HomeForm() {
         <ImageUploader
           img={data.data.picture}
           toggleeditWindow={toggleeditWindow}
+          updateImage={updateImage}
         />
       )}
       <Avatar
