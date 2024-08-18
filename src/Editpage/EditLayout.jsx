@@ -20,7 +20,7 @@ export default function EditLayout() {
         <div
           style={{
             overflowY: "scroll",
-            height: "20rem",
+            height: "100%rem",
             width: "100%",
             paddingLeft: "2rem",
             paddingRight: "2rem",

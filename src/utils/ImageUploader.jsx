@@ -18,6 +18,7 @@ export default function ImageUploader({ img, toggleeditWindow, updateImage }) {
     data.append("file", image);
     data.append("upload_preset", "devtree_profile");
     data.append("cloud_name", "dd9t8dh5w");
+    toggleeditWindow("load");
     try {
       const res = await fetch(
         "https://api.cloudinary.com/v1_1/dd9t8dh5w/image/upload",
@@ -28,7 +29,11 @@ export default function ImageUploader({ img, toggleeditWindow, updateImage }) {
       );
       const ans = await res.json();
       //if (imgId) await cloudinary.uploader.destroy(imgId);
-      await updateImage(ans.url);
+      updateImage(ans.url, ans.public_id).then((res) => {
+        window.location.reload(false);
+        toggleeditWindow("home");
+      });
+
       console.log(ans);
     } catch (err) {
       console.log(err);
@@ -59,10 +64,6 @@ export default function ImageUploader({ img, toggleeditWindow, updateImage }) {
       //console.log(context.getImageData(0, 0, canvas.width, canvas.height));
       //console.log(canvas);
       const dataUrl = canvas.toDataURL("image/jpeg");
-      // const f = await imageConversion.dataURLtoFile(dataUrl);
-      // console.log(f);
-      // let newImg = new Image();
-      // newImg.src = dataUrl;
 
       await uploadImage(dataUrl);
       console.log(dataUrl);
@@ -102,7 +103,7 @@ export default function ImageUploader({ img, toggleeditWindow, updateImage }) {
     >
       <button
         onClick={() => {
-          toggleeditWindow(false);
+          toggleeditWindow("home");
         }}
         style={{ position: "absolute", top: "1rem", right: "1rem" }}
       >
