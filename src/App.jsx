@@ -19,6 +19,8 @@ import ExperienceForm from "./Editpage/components/Experience";
 import CodingForm from "./Editpage/components/Coding";
 import AchievementForm from "./Editpage/components/Achievments";
 import HomeForm from "./Editpage/components/Home";
+import SkillsForm from "./Editpage/components/Skills.jsx";
+import ProjectForm from "./Editpage/components/Projects.jsx";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -42,6 +44,10 @@ const router = createBrowserRouter([
         Component: HomeForm,
       },
       {
+        path: "/:name/edit/prj",
+        Component: ProjectForm,
+      },
+      {
         path: "/:name/edit/edu",
         Component: EducationForm,
       },
@@ -56,6 +62,10 @@ const router = createBrowserRouter([
       {
         path: "/:name/edit/acv",
         Component: AchievementForm,
+      },
+      {
+        path: "/:name/edit/skls",
+        Component: SkillsForm,
       },
     ],
   },

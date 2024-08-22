@@ -32,8 +32,14 @@ export default function HomeForm() {
       {editWindow == "upload" && (
         <ImageUploader
           img={data.data.picture}
-          toggleeditWindow={toggleeditWindow}
+          toggleeditWindow={() => toggleeditWindow("load")}
+          gotToHome={() => {
+            toggleeditWindow("home");
+          }}
           updateImage={updateImage}
+          rw={1}
+          rh={1}
+          shape="round"
         />
       )}
       <Avatar

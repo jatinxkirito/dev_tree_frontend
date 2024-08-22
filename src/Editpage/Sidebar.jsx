@@ -8,8 +8,9 @@ const lst = [
   "Projects",
   "Coding handles",
   "Achievements",
+  "Skills",
 ];
-const rdrs = ["", "edu", "exp", "prj", "cp", "acv"];
+const rdrs = ["", "edu", "exp", "prj", "cp", "acv", "skls"];
 export default function SideBar() {
   let [active, setActive] = React.useState("Home");
   const navigate = useNavigate();

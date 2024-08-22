@@ -31,7 +31,11 @@ export default function Project({ projectList }) {
           return (
             <ProjectCard
               key={i}
-              img={d.image}
+              img={
+                d.image
+                  ? d.image.url
+                  : "https://wallpapers.com/images/hd/coding-background-9izlympnd0ovmpli.jpg"
+              }
               title={d.name}
               info={d.description}
               github={d.githubLink}

@@ -3,7 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-export default function AchievementForm() {
+export default function SkillsForm() {
   const { name } = useParams();
 
   const [data, setData] = useState({ loading: true });
@@ -12,10 +12,10 @@ export default function AchievementForm() {
   useEffect(() => {
     //console.log("baby");
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/api/${name}/achievments`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/api/${name}/skills`)
       .then((res) => {
         console.log(res);
-        setData({ loading: false, lst: res.data.data.achievments });
+        setData({ loading: false, lst: res.data.data.skills });
       })
       .catch((error) => {
         console.log(error);
@@ -24,7 +24,7 @@ export default function AchievementForm() {
   }, []);
 
   if (data.loading) return <div>Loading...</div>;
-  if (data.error) return <div>error</div>;
+  if (data.error) return <div>error....</div>;
   //console.log(data);
   var lst = data.lst;
   //console.log(data);
@@ -46,7 +46,7 @@ export default function AchievementForm() {
 
           const df = await axios.patch(
             `${import.meta.env.VITE_BACKEND_URL}/api/${name}`,
-            { achievments: newLst }
+            { skills: newLst }
           );
           console.log(df); // console.log(data.profile.picture);
         } catch (err) {
@@ -54,7 +54,7 @@ export default function AchievementForm() {
         }
       }}
     >
-      <h1 style={{ fontSize: "2rem" }}>Achievements</h1>
+      <h1 style={{ fontSize: "2rem" }}>Skills</h1>
       <hr style={{ backgroundColor: "#047857" }} />
       {lst.map((item, index) => {
         return (
@@ -79,7 +79,7 @@ export default function AchievementForm() {
                 borderColor: "black",
                 padding: "0.5rem",
               }}
-              placeholder="E.g. Won xyz hackathon"
+              placeholder="E.g. Web dev"
               defaultValue={item ? item : ""}
               required={true}
             />
@@ -104,7 +104,7 @@ export default function AchievementForm() {
           setData({ ...data, lst: [...lst, ""] });
         }}
       >
-        Add Achievement
+        Add Skill
       </button>
       <br />
       <input type="submit" value="Submit" />

@@ -3,7 +3,15 @@ import { useRef, useState } from "react";
 
 import Cropper from "react-easy-crop";
 
-export default function ImageUploader({ img, toggleeditWindow, updateImage }) {
+export default function ImageUploader({
+  img,
+  toggleeditWindow,
+  gotToHome,
+  updateImage,
+  rw,
+  rh,
+  shape,
+}) {
   const [userImage, setUserImage] = useState(img);
   const [err, setErr] = useState("");
   const [crop, setCrop] = useState({ x: 0, y: 0 });
@@ -18,7 +26,7 @@ export default function ImageUploader({ img, toggleeditWindow, updateImage }) {
     data.append("file", image);
     data.append("upload_preset", "devtree_profile");
     data.append("cloud_name", "dd9t8dh5w");
-    toggleeditWindow("load");
+    toggleeditWindow();
     try {
       const res = await fetch(
         "https://api.cloudinary.com/v1_1/dd9t8dh5w/image/upload",
@@ -31,7 +39,7 @@ export default function ImageUploader({ img, toggleeditWindow, updateImage }) {
       //if (imgId) await cloudinary.uploader.destroy(imgId);
       updateImage(ans.url, ans.public_id).then((res) => {
         window.location.reload(false);
-        toggleeditWindow("home");
+        gotToHome();
       });
 
       console.log(ans);
@@ -103,7 +111,7 @@ export default function ImageUploader({ img, toggleeditWindow, updateImage }) {
     >
       <button
         onClick={() => {
-          toggleeditWindow("home");
+          gotToHome();
         }}
         style={{ position: "absolute", top: "1rem", right: "1rem" }}
       >
@@ -112,7 +120,7 @@ export default function ImageUploader({ img, toggleeditWindow, updateImage }) {
       <Cropper
         //cropSize={{ height: "20rem" }}
 
-        cropShape="round"
+        cropShape={shape}
         style={{
           containerStyle: {
             height: "30rem",
@@ -123,7 +131,7 @@ export default function ImageUploader({ img, toggleeditWindow, updateImage }) {
         image={userImage}
         crop={crop}
         zoom={zoom}
-        aspect={1 / 1}
+        aspect={rw / rh}
         onCropChange={setCrop}
         onCropComplete={onCropComplete}
         onZoomChange={setZoom}
