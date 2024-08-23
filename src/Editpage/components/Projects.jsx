@@ -30,7 +30,7 @@ export default function ProjectForm() {
   // console.log(data.lst);
 
   var lst = data.lst;
-  console.log(lst[0]);
+  //console.log(lst[0]);
   //console.log(data);
   //var lst = data.data.education;
 
@@ -40,29 +40,28 @@ export default function ProjectForm() {
       onSubmit={async function (e) {
         try {
           e.preventDefault();
-          //   const Degree = document.querySelectorAll(".Degree");
-          //   const Institute = document.querySelectorAll(".Institute");
-          //   const From = document.querySelectorAll(".From");
-          //   const To = document.querySelectorAll(".To");
-          //   const Grade = document.querySelectorAll(".Grade");
-          //   const Location = document.querySelectorAll(".Location");
-          //   var newLst = [];
-          //   console.log(Degree.length);
-          //   for (let i = 0; i < Degree.length; i++) {
-          //     newLst.push({
-          //       startDate: From[i].value,
-          //       endDate: To[i].value,
-          //       institutionName: Institute[i].value,
-          //       degreeName: Degree[i].value,
-          //       grade: Grade[i].value,
-          //       location: Location[i].value,
-          //     });
-          //   }
+          const Name = document.querySelectorAll(".Name");
+          const github = document.querySelectorAll(".github");
+          const live = document.querySelectorAll(".live");
+          const description = document.querySelectorAll(".description");
 
-          //   const df = await axios.patch(
-          //     `${import.meta.env.VITE_BACKEND_URL}/api/${name}`,
-          //     { education: newLst }
-          //   );
+          var newLst = [];
+          //console.log(Degree.length);
+          for (let i = 0; i < Name.length; i++) {
+            newLst.push({
+              name: Name[i].value,
+              github: github[i].value,
+              live: live[i].value,
+              description: description[i].value,
+              image: lst[i].image ? lst[i].image._id : undefined,
+            });
+          }
+          setData({ ...data, state: -2 });
+          const df = await axios.patch(
+            `${import.meta.env.VITE_BACKEND_URL}/api/updateProject/${name}`,
+            { projects: newLst }
+          );
+          window.location.reload(false);
           //console.log(df); // console.log(data.profile.picture);
         } catch (err) {
           console.log(err);
@@ -133,6 +132,7 @@ export default function ProjectForm() {
                     ? item.image.url
                     : "https://wallpapers.com/images/hd/coding-background-9izlympnd0ovmpli.jpg"
                 }
+                alt="Project Image Here"
                 style={{
                   width: "15rem",
                   height: "auto",
@@ -145,7 +145,7 @@ export default function ProjectForm() {
                 setData({ ...data, state: index });
               }}
             >
-              Edit User image
+              Edit image
             </button>
             <label
               for="Name"
@@ -256,8 +256,9 @@ export default function ProjectForm() {
             />
             <button
               onClick={() => {
-                del.push(item.image.public_id);
+                // del.push(item.image.public_id);
                 lst.splice(index, 1);
+                //del.push(lst[index].image._id);
                 setData({ ...data, lst });
               }}
             >
