@@ -2,6 +2,9 @@ import { useQuery } from "@tanstack/react-query";
 import Container from "./Container";
 import CircleIcon from "@mui/icons-material/Circle";
 import { useParams } from "react-router-dom";
+import { CircularProgress } from "@mui/material";
+import ErrorC from "../utils/ErrorC";
+import Empty from "../utils/Empty";
 // const lst = [
 //   "Expert at Codeforces(max 1627)",
 //   "4 star at codechef(max 1993)",
@@ -49,22 +52,17 @@ export default function Achievments() {
         (res) => res.json()
       ),
   });
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading)
+    return (
+      <div>
+        <CircularProgress />
+      </div>
+    );
+  if (!data || !data.data || !data.data.achievments || error) return <ErrorC />;
   var lst = data.data.achievments;
   return (
     <Container>
-      <div
-        style={{
-          color: "#052e16",
-          fontSize: "3rem",
-          fontFamily: "Alegreya",
-          fontWeight: "bold",
-          //marginTop: "1rem",
-          marginBottom: "0.5rem",
-        }}
-      >
-        Achievments
-      </div>
+      {lst.length == 0 && <Empty />}
       <div
         style={{
           width: "80%",

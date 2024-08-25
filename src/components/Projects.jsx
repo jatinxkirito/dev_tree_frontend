@@ -1,7 +1,10 @@
+import Empty from "../utils/Empty";
+import ErrorC from "../utils/ErrorC";
 import Container from "./Container";
 import ProjectCard from "./ProjectCard";
 
 export default function Project({ projectList }) {
+  if (!projectList) return <ErrorC />;
   return (
     <Container>
       <div
@@ -24,9 +27,7 @@ export default function Project({ projectList }) {
           justifyContent: "center",
         }}
       >
-        {projectList.length == 0 && (
-          <div>Looks like we still have some work to do</div>
-        )}
+        {projectList.length == 0 && <Empty />}
         {projectList.map((d, i) => {
           return (
             <ProjectCard

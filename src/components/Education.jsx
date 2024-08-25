@@ -7,33 +7,10 @@ import TimelineDot from "@mui/lab/TimelineDot";
 import Container from "./Container";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+import { CircularProgress } from "@mui/material";
+import ErrorC from "../utils/ErrorC";
+import Empty from "../utils/Empty";
 
-// const lst = [
-//   {
-//     Name: "Indian Institute of Information Technology Sonepat",
-//     Degree: "Btech-Computer Science and Technology",
-//     Location: "Sonepat, India",
-//     Score: "9",
-//     StartYear: "2021",
-//     EndYear: "2025",
-//   },
-//   {
-//     Name: "O.S.D.A.V Public School",
-//     Degree: "CBSE Class XII",
-//     Location: "Kaithal, India",
-//     Score: "97.6%",
-//     StartYear: "2020",
-//     EndYear: "2021",
-//   },
-//   {
-//     Name: "O.S.D.A.V Public School",
-//     Degree: "CBSE Class X",
-//     Location: "Kaithal, India",
-//     Score: "92%",
-//     StartYear: "2018",
-//     EndYear: "2019",
-//   },
-// ];
 function Degree({ data, tr }) {
   return (
     <TimelineItem>
@@ -112,26 +89,15 @@ export default function Education() {
         (res) => res.json()
       ),
   });
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Loading...</div>;
+  if (isLoading) return <CircularProgress />;
+  if (!data || !data.data || !data.data.education || error) return <ErrorC />;
   //console.log(data);
   var lst = data.data.education;
 
   // console.log(lst);
   return (
     <Container>
-      <div
-        style={{
-          color: "#052e16",
-          fontSize: "3rem",
-          fontFamily: "Alegreya",
-          fontWeight: "bold",
-          marginTop: "1.5rem",
-          marginBottom: "0.5rem",
-        }}
-      >
-        Education
-      </div>
+      {lst.length == 0 && <Empty />}
       <Timeline
         sx={{
           [`& .${timelineItemClasses.root}:before`]: {

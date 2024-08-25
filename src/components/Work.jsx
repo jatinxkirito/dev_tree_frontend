@@ -7,6 +7,9 @@ import TimelineDot from "@mui/lab/TimelineDot";
 import Container from "./Container";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+import { CircularProgress } from "@mui/material";
+import ErrorC from "../utils/ErrorC";
+import Empty from "../utils/Empty";
 
 function Exp({ data, tr }) {
   return (
@@ -101,22 +104,17 @@ export default function Work() {
       ),
   });
   //console.log(data);
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading)
+    return (
+      <div>
+        <CircularProgress />
+      </div>
+    );
+  if (!data || !data.data || !data.data.work || error) return <ErrorC />;
   var lst = data.data.work;
   return (
     <Container>
-      <div
-        style={{
-          color: "#052e16",
-          fontSize: "3rem",
-          fontFamily: "Alegreya",
-          fontWeight: "bold",
-          //marginTop: "1rem",
-          marginBottom: "0.5rem",
-        }}
-      >
-        Work Experience
-      </div>
+      {lst.length == 0 && <Empty />}
       <Timeline
         sx={{
           [`& .${timelineItemClasses.root}:before`]: {

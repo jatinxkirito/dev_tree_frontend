@@ -1,8 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import Container from "./Container";
 import { CircularProgress } from "@mui/material";
-
-import github from "../assets/githublogo.png";
+import ErrorC from "../utils/ErrorC";
 
 export default function Github({ GithubId = undefined }) {
   const { isLoading, error, data } = useQuery({
@@ -12,22 +11,13 @@ export default function Github({ GithubId = undefined }) {
         res.json()
       ),
   });
-  if (isLoading) return <div>Loading</div>;
+  if (isLoading) return <CircularProgress />;
+  if (error || !data) return <ErrorC />;
 
   return (
     <Container>
-      {isLoading && <CircularProgress color="inherit" />}
-      {!isLoading && (
+      {
         <div style={{ width: "fit-content" }}>
-          <img
-            src={github}
-            style={{
-              width: "14rem",
-              height: "auto",
-              marginBottom: "2rem",
-              marginInline: "auto",
-            }}
-          />
           <div
             style={{
               display: "flex",
@@ -131,7 +121,7 @@ export default function Github({ GithubId = undefined }) {
             ></img>
           </div>
         </div>
-      )}
+      }
     </Container>
   );
 }
