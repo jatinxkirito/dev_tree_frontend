@@ -20,6 +20,8 @@ export default function EditLayout() {
       if (p != name) setState("na");
       else setState("ok");
       // console.log(p);
+    } else {
+      setState("na");
     }
   });
   const currentPath = useLocation().pathname;

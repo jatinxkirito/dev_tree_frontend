@@ -37,7 +37,9 @@ export default function CodingForm() {
           e.preventDefault();
           const dat = new FormData(e.target);
           let x = Object.fromEntries(dat);
-
+          if (x.codeforces == "") x.codeforces = undefined;
+          if (x.codechef == "") x.codechef = undefined;
+          if (x.leetcode == "") x.leetcode = undefined;
           const df = await axios.patch(
             `${import.meta.env.VITE_BACKEND_URL}/api/${name}`,
             x
@@ -53,7 +55,7 @@ export default function CodingForm() {
         <h1 style={{ fontSize: "2rem" }}>Coding Handles</h1>
         <hr style={{ backgroundColor: "#047857" }} />
         <label
-          for="LeetCode"
+          for="leetcode"
           style={{
             fontSize: "1.1rem",
             marginRight: "100%",
@@ -65,8 +67,8 @@ export default function CodingForm() {
 
         <input
           type="text"
-          id="LeetCode"
-          name="leetCode"
+          id="leetcode"
+          name="leetcode"
           style={{
             width: "100%",
             backgroundColor: "white",

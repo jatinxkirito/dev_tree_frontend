@@ -10,6 +10,7 @@ import Skl from "../components/Skill";
 
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+import Empty from "../utils/Empty";
 
 export default function Home() {
   const { name } = useParams();
@@ -67,7 +68,7 @@ export default function Home() {
           fontWeight: "bold",
         }}
       >
-        {data.data.job}
+        {data.data.job ? data.data.job : "Forever Student"}
       </div>
       <div>
         {data.data.linkedin && (
@@ -92,10 +93,13 @@ export default function Home() {
           />
         )}
       </div>
-      {data.data.description && (
+
+      {data.data.description ? (
         <div style={{ marginTop: "2rem", color: "black" }}>
           {data.data.description}
         </div>
+      ) : (
+        <Empty msg=" Look's like I need to express myself a little more, Please give me some time" />
       )}
       <div
         style={{
@@ -108,23 +112,26 @@ export default function Home() {
       >
         Skills
       </div>
-      <div
-        style={{
-          display: "flex",
-          height: "fit-content",
-          width: "fit-content",
-          maxWidth: "40rem",
-          alignItems: "center",
-          justifyContent: "center",
-          flexWrap: "wrap",
-        }}
-      >
-        {data.data.skills.map((skil) => {
-          return <Skl skill={skil} key={skil} />;
-        })}
-      </div>
 
-      {/* <Graph /> */}
+      {data.data.skills.length != 0 ? (
+        <div
+          style={{
+            display: "flex",
+            height: "fit-content",
+            width: "fit-content",
+            maxWidth: "40rem",
+            alignItems: "center",
+            justifyContent: "center",
+            flexWrap: "wrap",
+          }}
+        >
+          {data.data.skills.map((skil) => {
+            return <Skl skill={skil} key={skil} />;
+          })}
+        </div>
+      ) : (
+        <Empty />
+      )}
     </Container>
   );
 }

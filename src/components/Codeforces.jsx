@@ -1,10 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
-import cf from "../assets/Codeforces_logo.svg.png";
+
 import cmc from "../assets/Codeforces.webp";
 //import crypto from "crypto";
 import Container from "./Container";
 import Graph from "./graph";
-export default function Cf({ CfId = "jatinxkirito" }) {
+import { CircularProgress } from "@mui/material";
+import ErrorC from "../utils/ErrorC";
+export default function Cf({ CfId }) {
   const { isLoading, error, data } = useQuery({
     queryKey: `Cf${CfId}Data`,
     queryFn: () =>
@@ -13,9 +15,25 @@ export default function Cf({ CfId = "jatinxkirito" }) {
       ),
   });
 
-  if (isLoading) return <div>Loading...</div>;
-  console.log(data);
-  if (error) return <div>Couldn&apos;t load codeforces</div>;
+  if (isLoading)
+    return (
+      <div>
+        <CircularProgress color="inherit" />
+      </div>
+    );
+  if (!data || error)
+    return (
+      <div>
+        <ErrorC msg="Couldn't load codeforces" />
+      </div>
+    );
+  if (data.status == "FAILED")
+    return (
+      <div>
+        <ErrorC />
+      </div>
+    );
+
   var contestRating = data.result.map((ct) => {
     return ct.newRating;
   });
@@ -27,15 +45,6 @@ export default function Cf({ CfId = "jatinxkirito" }) {
   });
   return (
     <Container>
-      <img
-        src={cf}
-        style={{
-          width: "16rem",
-          height: "auto",
-          marginBottom: "2rem",
-          marginInline: "auto",
-        }}
-      />
       <div
         style={{
           display: "flex",

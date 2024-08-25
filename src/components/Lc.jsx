@@ -2,10 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 import Container from "./Container";
 import { Avatar, CircularProgress } from "@mui/material";
 import ProgressBar from "./Progress";
-import LcImg from "../assets/Leetcode.png";
+
 import LcContest from "./Lccontest";
 import LcGraph from "./LcGraph";
-export default function LeetCode({ LeetcodeId = "jatinxkirito" }) {
+import Empty from "../utils/Empty";
+import ErrorC from "../utils/ErrorC";
+export default function LeetCode({ LeetcodeId }) {
   const { isLoading, error, data } = useQuery({
     queryKey: `Leetcode${LeetcodeId}Data`,
     queryFn: () =>
@@ -13,21 +15,27 @@ export default function LeetCode({ LeetcodeId = "jatinxkirito" }) {
         (res) => res.json()
       ),
   });
-  if (error) return <div>Failed to load data</div>;
+  if (isLoading) return <CircularProgress color="inherit" />;
+  if (!data || error)
+    return (
+      <div>
+        <ErrorC />
+      </div>
+    );
+
+  if (data.errors && data.errors.length != 0)
+    return (
+      <div>
+        <ErrorC msg={data.errors[0].message} />
+      </div>
+    );
+
   return (
     <Container>
-      {isLoading && <CircularProgress color="inherit" />}
-      {!isLoading && (
-        <div style={{ width: "90%" }}>
-          <img
-            src={LcImg}
-            style={{
-              width: "14rem",
-              height: "auto",
-              marginBottom: "2rem",
-              marginInline: "auto",
-            }}
-          />
+      <div style={{ width: "90%" }}>
+        {data.username == "undefined" || data.username == "" ? (
+          <Empty msg="Seems like I am not that intersted in LeetCode" />
+        ) : (
           <div
             style={{
               display: "flex",
@@ -98,13 +106,13 @@ export default function LeetCode({ LeetcodeId = "jatinxkirito" }) {
                   </p>
                 </div>
               </div>
-              <LcContest LeetcodeId="jatinxkirito" />
-              <ProgressBar LeetcodeId="jatinxkirito" />
+              <LcContest LeetcodeId={LeetcodeId} />
+              <ProgressBar LeetcodeId={LeetcodeId} />
             </div>
-            <LcGraph LeetcodeId="jatinxkirito" />
+            <LcGraph LeetcodeId={LeetcodeId} />
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </Container>
   );
 }

@@ -27,6 +27,8 @@ export default function LandingScreen() {
         alignItems: "center",
         Items: "center",
         padding: "2rem",
+        marginTop: "auto",
+        marginBottom: "auto",
       }}
     >
       <SpaRounded sx={{ color: "#10b981", fontSize: "5rem" }} />

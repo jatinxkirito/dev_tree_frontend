@@ -1,10 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
-import cc from "../assets/cc.jpeg";
+
 import ccs from "../assets/Codechef.png";
 //import crypto from "crypto";
 import Container from "./Container";
 import Graph from "./graph";
-export default function Cc({ CcId = "jatin_kirito" }) {
+import { CircularProgress } from "@mui/material";
+import ErrorC from "../utils/ErrorC";
+export default function Cc({ CcId }) {
   const { isLoading, error, data } = useQuery({
     queryKey: `Codechef${CcId}Data`,
     queryFn: () =>
@@ -13,9 +15,25 @@ export default function Cc({ CcId = "jatin_kirito" }) {
       ),
   });
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>error</div>;
-  if (data.success == false) return <div>error</div>;
+  if (isLoading)
+    return (
+      <div>
+        <CircularProgress color="inherit" />
+      </div>
+    );
+  if (!data || error)
+    return (
+      <div>
+        <ErrorC />
+      </div>
+    );
+  console.log(data);
+  if (data.success == false)
+    return (
+      <div>
+        <ErrorC msg="Couldn't fetch the data" />
+      </div>
+    );
   var contestRating = data.ratingData.map((ct) => {
     return ct.rating;
   });
@@ -28,15 +46,6 @@ export default function Cc({ CcId = "jatin_kirito" }) {
   //console.log(tm);
   return (
     <Container>
-      <img
-        src={cc}
-        style={{
-          width: "16rem",
-          height: "auto",
-          marginBottom: "2rem",
-          marginInline: "auto",
-        }}
-      />
       <div
         style={{
           display: "flex",

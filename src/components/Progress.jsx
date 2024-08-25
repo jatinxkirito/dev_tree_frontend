@@ -23,7 +23,7 @@ function ProgressBar({ LeetcodeId }) {
         (res) => res.json()
       ),
   });
-  //console.log(data);
+
   return (
     <div>
       {isLoading && <div>Loading...</div>}
