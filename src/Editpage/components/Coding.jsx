@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Sbmt from "../../utils/SubmitBtn";
 
 export default function CodingForm() {
   const { name } = useParams();
@@ -135,7 +136,7 @@ export default function CodingForm() {
       </div>
 
       <br />
-      <input type="submit" value="Submit" />
+      <Sbmt />
     </form>
   );
 }

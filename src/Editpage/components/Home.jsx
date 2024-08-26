@@ -2,8 +2,10 @@ import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import ImageUploader from "../../utils/ImageUploader";
-import { Avatar } from "@mui/material";
+import { Avatar, CircularProgress } from "@mui/material";
 import axios from "axios";
+import ErrorC from "../../utils/ErrorC";
+import Sbmt from "../../utils/SubmitBtn";
 
 export default function HomeForm() {
   const { name } = useParams();
@@ -25,8 +27,18 @@ export default function HomeForm() {
         (res) => res.json()
       ),
   });
-  if (isLoading || editWindow == "load") return <div>Loading...</div>;
-  if (error) return <div>error</div>;
+  if (isLoading || editWindow == "load")
+    return (
+      <div>
+        <CircularProgress color="inherit" />
+      </div>
+    );
+  if (error)
+    return (
+      <div>
+        <ErrorC />
+      </div>
+    );
   return (
     <div>
       {editWindow == "upload" && (
@@ -59,7 +71,7 @@ export default function HomeForm() {
           toggleeditWindow("upload");
         }}
       >
-        Edit User image
+        <b> Edit User image</b>
       </button>
       <hr
         style={{
@@ -102,7 +114,7 @@ export default function HomeForm() {
           }}
         >
           <label for="Name" style={{ fontSize: "1.1rem", fontWeight: "bold" }}>
-            Name:
+            Name:<span style={{ color: "white" }}>.......</span>
           </label>
           <input
             type="text"
@@ -131,7 +143,7 @@ export default function HomeForm() {
           }}
         >
           <label for="job" style={{ fontSize: "1.1rem", fontWeight: "bold" }}>
-            Job:
+            Job:<span style={{ color: "white" }}>...........</span>
           </label>
           <input
             type="text"
@@ -163,7 +175,7 @@ export default function HomeForm() {
             for="linkedin"
             style={{ fontSize: "1.1rem", fontWeight: "bold" }}
           >
-            linkedin:
+            linkedin:<span style={{ color: "white" }}>...</span>
           </label>
           <input
             type="text"
@@ -194,7 +206,7 @@ export default function HomeForm() {
             for="github"
             style={{ fontSize: "1.1rem", fontWeight: "bold" }}
           >
-            github:
+            github:<span style={{ color: "white" }}>.....</span>
           </label>
           <input
             type="text"
@@ -243,7 +255,7 @@ export default function HomeForm() {
           required={true}
         />
         <br />
-        <input type="submit" value="Submit" />
+        <Sbmt />
       </form>
     </div>
   );

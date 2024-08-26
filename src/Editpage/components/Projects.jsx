@@ -3,6 +3,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ImageUploader from "../../utils/ImageUploader";
+import { AddCircle, Delete } from "@mui/icons-material";
+import Sbmt from "../../utils/SubmitBtn";
 
 export default function ProjectForm() {
   const { name } = useParams();
@@ -145,7 +147,7 @@ export default function ProjectForm() {
                 setData({ ...data, state: index });
               }}
             >
-              Edit image
+              <b>Edit image</b>
             </button>
             <label
               for="Name"
@@ -261,9 +263,12 @@ export default function ProjectForm() {
                 //del.push(lst[index].image._id);
                 setData({ ...data, lst });
               }}
+              style={{ marginTop: "1rem" }}
             >
-              {" "}
-              Delete
+              <b>
+                <Delete />
+                Delete
+              </b>
             </button>
           </div>
         );
@@ -273,10 +278,12 @@ export default function ProjectForm() {
           setData({ ...data, lst: [...lst, {}] });
         }}
       >
-        Add Project
+        <b>
+          <AddCircle /> Add Project
+        </b>
       </button>
       <br />
-      <input type="submit" value="Submit" />
+      <Sbmt />
     </form>
   );
 }

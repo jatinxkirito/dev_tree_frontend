@@ -1,7 +1,9 @@
+import { AddCircle, Delete } from "@mui/icons-material";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Sbmt from "../../utils/SubmitBtn";
 
 export default function EducationForm() {
   const { name } = useParams();
@@ -137,7 +139,7 @@ export default function EducationForm() {
                 for="From"
                 style={{ fontSize: "1.1rem", fontWeight: "bold" }}
               >
-                From:
+                From:<span style={{ color: "white" }}>..</span>
               </label>
               <input
                 type="text"
@@ -248,9 +250,12 @@ export default function EducationForm() {
                 lst.splice(index, 1);
                 setData({ ...data, lst });
               }}
+              style={{ marginTop: "1rem" }}
             >
-              {" "}
-              Delete
+              <b>
+                <Delete />
+                Delete
+              </b>
             </button>
           </div>
         );
@@ -260,10 +265,12 @@ export default function EducationForm() {
           setData({ ...data, lst: [...lst, {}] });
         }}
       >
-        Add Education
+        <b>
+          <AddCircle /> Add Education
+        </b>
       </button>
       <br />
-      <input type="submit" value="Submit" />
+      <Sbmt />
     </form>
   );
 }

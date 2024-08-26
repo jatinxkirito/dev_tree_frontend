@@ -11,7 +11,7 @@ export default function Github({ GithubId = undefined }) {
         res.json()
       ),
   });
-  if (isLoading) return <CircularProgress />;
+  if (isLoading) return <CircularProgress color="inherit" />;
   if (error || !data) return <ErrorC />;
 
   return (

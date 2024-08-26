@@ -1,6 +1,8 @@
+import { AddCircle, Delete } from "@mui/icons-material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Sbmt from "../../utils/SubmitBtn";
 
 export default function ExperienceForm() {
   const { name } = useParams();
@@ -273,9 +275,12 @@ export default function ExperienceForm() {
                 lst.splice(index, 1);
                 setData({ ...data, lst });
               }}
+              style={{ marginTop: "1rem" }}
             >
-              {" "}
-              Delete
+              <b>
+                <Delete />
+                Delete
+              </b>
             </button>
           </div>
         );
@@ -285,10 +290,12 @@ export default function ExperienceForm() {
           setData({ ...data, lst: [...lst, {}] });
         }}
       >
-        Add Experience
+        <b>
+          <AddCircle /> Add Experience
+        </b>
       </button>
       <br />
-      <input type="submit" value="Submit" />
+      <Sbmt />
     </form>
   );
 }

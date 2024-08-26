@@ -12,7 +12,7 @@ export default function LcGraph({ LeetcodeId }) {
   });
   //console.log(LeetcodeId);
   //console.log(data);
-  if (isLoading) return <CircularProgress />;
+  if (isLoading) return <CircularProgress color="inherit" />;
   if (data.contestParticipation.length == 0) return <></>;
 
   const ratings = data.contestParticipation.map((ct) => {

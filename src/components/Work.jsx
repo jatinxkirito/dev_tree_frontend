@@ -107,7 +107,7 @@ export default function Work() {
   if (isLoading)
     return (
       <div>
-        <CircularProgress />
+        <CircularProgress color="inherit" />
       </div>
     );
   if (!data || !data.data || !data.data.work || error) return <ErrorC />;

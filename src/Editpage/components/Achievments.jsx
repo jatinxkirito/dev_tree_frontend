@@ -1,7 +1,8 @@
-import { Delete } from "@mui/icons-material";
+import { AddCircle, Delete } from "@mui/icons-material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Sbmt from "../../utils/SubmitBtn";
 
 export default function AchievementForm() {
   const { name } = useParams();
@@ -104,10 +105,12 @@ export default function AchievementForm() {
           setData({ ...data, lst: [...lst, ""] });
         }}
       >
-        Add Achievement
+        <b>
+          <AddCircle /> Add Achievement
+        </b>
       </button>
       <br />
-      <input type="submit" value="Submit" />
+      <Sbmt />
     </form>
   );
 }

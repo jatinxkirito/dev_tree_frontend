@@ -20,10 +20,10 @@ export default function Work() {
   if (isLoading)
     return (
       <div>
-        <CircularProgress />
+        <CircularProgress color="inherit" />
       </div>
     );
-  if (!data || !data.data || error) <ErrorC />;
+  if (!data || !data.data || error) return <ErrorC />;
   if (data) github = data.data.github;
   // const { navigation } = this.props;
   // const username = navigation.getParam("comp", {});

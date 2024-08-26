@@ -89,7 +89,7 @@ export default function Education() {
         (res) => res.json()
       ),
   });
-  if (isLoading) return <CircularProgress />;
+  if (isLoading) return <CircularProgress color="inherit" />;
   if (!data || !data.data || !data.data.education || error) return <ErrorC />;
   //console.log(data);
   var lst = data.data.education;
