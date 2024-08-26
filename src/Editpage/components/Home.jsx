@@ -110,7 +110,7 @@ export default function HomeForm() {
           onSubmit={async function (e) {
             try {
               e.preventDefault();
-              toggleeditWindow("load");
+              // toggleeditWindow("load");
               const df = await axios.patch(
                 `${import.meta.env.VITE_BACKEND_URL}/api/${name}`,
                 {
@@ -123,8 +123,8 @@ export default function HomeForm() {
                     document.getElementsByClassName("description")[0].value,
                 }
               );
-              window.location.reload(false);
-              toggleeditWindow("home");
+              // window.location.reload(false);
+              //  toggleeditWindow("home");
               toast.success("Update Successful!", {
                 position: "top-center",
                 autoClose: 5000,
@@ -209,7 +209,6 @@ export default function HomeForm() {
               }}
               placeholder="E.g. Corporate Majdoor"
               defaultValue={data.data.job ? data.data.job : ""}
-              required={true}
             />
           </div>
           <div
@@ -272,7 +271,6 @@ export default function HomeForm() {
               }}
               placeholder="E.g. jatinxkirito"
               defaultValue={data.data.github ? data.data.github : ""}
-              required={true}
             />
           </div>
           <label
@@ -301,7 +299,6 @@ export default function HomeForm() {
             }}
             placeholder="E.g. I am amazing software developer with top notch problem solving skills and business aptitude"
             defaultValue={data.data.description ? data.data.description : ""}
-            required={true}
           />
           <br />
           <Sbmt />

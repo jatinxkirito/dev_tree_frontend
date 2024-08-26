@@ -99,7 +99,7 @@ export default function EducationForm() {
               `${import.meta.env.VITE_BACKEND_URL}/api/${name}`,
               { education: newLst }
             );
-            window.location.reload(false);
+            //window.location.reload(false);
             toast.success("Update Successful!", {
               position: "top-center",
               autoClose: 5000,

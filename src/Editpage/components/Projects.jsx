@@ -76,6 +76,7 @@ export default function ProjectForm() {
         onSubmit={async function (e) {
           try {
             e.preventDefault();
+
             const Name = document.querySelectorAll(".Name");
             const github = document.querySelectorAll(".github");
             const live = document.querySelectorAll(".live");
@@ -92,12 +93,14 @@ export default function ProjectForm() {
                 image: lst[i].image ? lst[i].image._id : undefined,
               });
             }
-            setData({ ...data, state: -2 });
+
             const df = await axios.patch(
               `${import.meta.env.VITE_BACKEND_URL}/api/updateProject/${name}`,
               { projects: newLst }
             );
-            window.location.reload(false);
+            // window.location.reload(false);
+            // setData({ ...data, state: -2 });
+            console.log(df);
             toast.success("Update Successful!", {
               position: "top-center",
               autoClose: 5000,
@@ -221,7 +224,8 @@ export default function ProjectForm() {
                 />
               </div>
               <button
-                onClick={() => {
+                onClick={(e) => {
+                  e.preventDefault();
                   setData({ ...data, state: index });
                 }}
               >
@@ -335,6 +339,7 @@ export default function ProjectForm() {
                 required={true}
               />
               <button
+                type="button"
                 onClick={() => {
                   // del.push(item.image.public_id);
                   lst.splice(index, 1);
