@@ -21,6 +21,8 @@ import AchievementForm from "./Editpage/components/Achievments";
 import HomeForm from "./Editpage/components/Home";
 import SkillsForm from "./Editpage/components/Skills.jsx";
 import ProjectForm from "./Editpage/components/Projects.jsx";
+import { ErrorBoundary } from "react-error-boundary";
+import Protection from "./utils/NotFound.jsx";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -33,10 +35,12 @@ const queryClient = new QueryClient({
 const router = createBrowserRouter([
   {
     path: "/auth/google/callback",
+    errorElement: <Protection />,
     Component: GoogleCallback,
   },
   {
     path: "/:name/edit",
+    errorElement: <Protection />,
     Component: EditLayout,
     children: [
       {
@@ -72,6 +76,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     Component: Layou,
+    errorElement: <Protection />,
     children: [
       {
         path: "/",

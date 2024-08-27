@@ -1,4 +1,4 @@
-import { Avatar, Box } from "@mui/material";
+import { Avatar, Box, CircularProgress } from "@mui/material";
 import Container from "../components/Container";
 
 import dp from "../assets/krto.png";
@@ -11,6 +11,7 @@ import Skl from "../components/Skill";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import Empty from "../utils/Empty";
+import ErrorC from "../utils/ErrorC";
 
 export default function Home() {
   const { name } = useParams();
@@ -21,9 +22,13 @@ export default function Home() {
         (res) => res.json()
       ),
   });
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>error</div>;
-  console.log(data);
+  if (isLoading)
+    return (
+      <div>
+        <CircularProgress color="inherit" />
+      </div>
+    );
+  if (error || !data || !data.data) return <ErrorC />;
   return (
     <Container>
       <div
