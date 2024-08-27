@@ -100,7 +100,7 @@ export default function ProjectForm() {
             );
             // window.location.reload(false);
             // setData({ ...data, state: -2 });
-            console.log(df);
+
             toast.success("Update Successful!", {
               position: "top-center",
               autoClose: 5000,
@@ -246,6 +246,7 @@ export default function ProjectForm() {
                 type="text"
                 className="Name"
                 name="Name"
+                maxLength="20"
                 style={{
                   width: "100%",
                   backgroundColor: "white",
@@ -325,6 +326,7 @@ export default function ProjectForm() {
                 type="text"
                 className="description"
                 name="description"
+                maxLength="400"
                 rows="5"
                 style={{
                   width: "100%",

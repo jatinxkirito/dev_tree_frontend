@@ -40,6 +40,7 @@ export default function ProjectCard({ img, info, title, github, deploy }) {
         style={{
           height: "11rem",
           textWrap: "wrap",
+          wordWrap: "break-word",
           color: "black",
           fontSize: "0.65rem",
           textAlign: "left",

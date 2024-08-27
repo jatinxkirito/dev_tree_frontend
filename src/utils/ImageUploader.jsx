@@ -37,12 +37,10 @@ export default function ImageUploader({
       );
       const ans = await res.json();
       //if (imgId) await cloudinary.uploader.destroy(imgId);
-      updateImage(ans.url, ans.public_id).then((res) => {
+      await updateImage(ans.url, ans.public_id).then((res) => {
         window.location.reload(false);
         gotToHome();
       });
-
-      console.log(ans);
     } catch (err) {
       console.log(err);
     }
@@ -74,7 +72,7 @@ export default function ImageUploader({
       const dataUrl = canvas.toDataURL("image/jpeg");
 
       await uploadImage(dataUrl);
-      console.log(dataUrl);
+
       setUserImage(dataUrl);
     };
   };
@@ -138,7 +136,14 @@ export default function ImageUploader({
       />
       <input type="file" accept="image/*" onChange={onChange} />
       <div type>{err}</div>
-      <button onClick={onCropFinal}>Apply</button>
+      <button
+        onClick={(e) => {
+          e.preventDefault();
+          onCropFinal();
+        }}
+      >
+        Apply
+      </button>
     </div>
   );
 }
