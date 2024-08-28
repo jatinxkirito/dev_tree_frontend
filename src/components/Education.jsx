@@ -22,9 +22,6 @@ function Degree({ data, tr }) {
         <div
           style={{
             width: "100%",
-            // borderRadius: "2rem",
-            // borderWidth: "0.15rem",
-            // borderColor: "#052e16",
             display: "flex",
             flexDirection: "column",
             justifyContent: "left",
@@ -91,10 +88,9 @@ export default function Education() {
   });
   if (isLoading) return <CircularProgress color="inherit" />;
   if (!data || !data.data || !data.data.education || error) return <ErrorC />;
-  //console.log(data);
+
   var lst = data.data.education;
 
-  // console.log(lst);
   return (
     <Container>
       {lst.length == 0 && <Empty />}

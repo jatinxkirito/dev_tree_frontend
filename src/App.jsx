@@ -1,9 +1,9 @@
 import Layou from "./Layout";
 import "./App.css";
-// import "./index.css";
+
 import { CookiesProvider } from "react-cookie";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import LandingScreen from "./screens/Landing";
 import Home from "./screens/Home";
@@ -21,7 +21,6 @@ import AchievementForm from "./Editpage/components/Achievments";
 import HomeForm from "./Editpage/components/Home";
 import SkillsForm from "./Editpage/components/Skills.jsx";
 import ProjectForm from "./Editpage/components/Projects.jsx";
-import { ErrorBoundary } from "react-error-boundary";
 import Protection from "./utils/NotFound.jsx";
 import Me from "./components/Me.jsx";
 

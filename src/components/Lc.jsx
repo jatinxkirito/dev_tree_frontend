@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import Container from "./Container";
-import { Avatar, CircularProgress } from "@mui/material";
+import { CircularProgress } from "@mui/material";
 import ProgressBar from "./Progress";
 
 import LcContest from "./Lccontest";
@@ -39,7 +39,6 @@ export default function LeetCode({ LeetcodeId }) {
           <div
             style={{
               display: "flex",
-              // justifyContent: "center",
               flexDirection: "column",
               borderWidth: "0.15rem",
               borderColor: "#052e16",
@@ -51,7 +50,6 @@ export default function LeetCode({ LeetcodeId }) {
               style={{
                 display: "flex",
                 flexWrap: "wrap",
-                //alignItems: "center",
                 justifyContent: "space-evenly",
               }}
             >

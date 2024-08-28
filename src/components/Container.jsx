@@ -4,9 +4,7 @@ export default function Container({ children }) {
       style={{
         display: "flex",
         flexDirection: "column",
-        // justifyContent: "space-evenly",
         alignItems: "center",
-        // Items: "center",
         padding: "2rem",
         width: "100%",
       }}

@@ -10,12 +10,7 @@ function Facts({ data }) {
   return (
     <li
       style={{
-        //  width: "50%",
-        // borderRadius: "2rem",
-        // borderWidth: "0.15rem",
-        // borderColor: "#052e16",
         display: "flex",
-        // flexDirection: "column",
         fontWeight: "bold",
         margin: "1rem",
         justifyContent: "left",

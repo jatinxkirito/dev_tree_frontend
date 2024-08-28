@@ -14,9 +14,7 @@ export default function EducationForm() {
 
   const [data, setData] = useState({ loading: true });
 
-  //console.log("pikachu");
   useEffect(() => {
-    //console.log("baby");
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/api/${name}/education`)
       .then((res) => {
@@ -50,11 +48,9 @@ export default function EducationForm() {
         <ErrorC />
       </div>
     );
-  //console.log(data);
+
   if (!data.lst) return <ErrorC />;
   var lst = data.lst;
-  //console.log(data);
-  //var lst = data.data.education;
 
   return (
     <>
@@ -100,9 +96,8 @@ export default function EducationForm() {
               `${import.meta.env.VITE_BACKEND_URL}/api/${name}`,
               { education: newLst }
             );
-            //window.location.reload(false);
+
             setData({ ...data, loading: false });
-            // setData((prev) => ({ ...prev, state: -1 }));
 
             setTimeout(
               () =>
@@ -120,8 +115,6 @@ export default function EducationForm() {
               50
             );
             setTimeout(() => window.location.reload(false), 300);
-
-            // console.log(data.profile.picture);
           } catch (err) {
             setData({ ...data, loading: false });
             setTimeout(

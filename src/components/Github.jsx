@@ -33,15 +33,13 @@ export default function Github({ GithubId = undefined }) {
               style={{
                 display: "flex",
                 flexWrap: "wrap",
-                //alignItems: "center",
+
                 justifyContent: "space-between",
               }}
             >
               <div
                 className="inline-flex"
                 style={{
-                  //   borderWidth: "0.15rem",
-                  //   borderColor: "#052e16",
                   padding: "0.5rem",
                   borderRadius: "1rem",
                   fontFamily: "Alegeraya",
@@ -57,7 +55,7 @@ export default function Github({ GithubId = undefined }) {
                     borderRadius: "1.2rem",
                     marginRight: "1rem",
                   }}
-                  className="shadow-lg shadow-gray-800"
+                  className="shadow-md shadow-gray-800"
                 />
                 <div
                   style={{
@@ -94,15 +92,11 @@ export default function Github({ GithubId = undefined }) {
                 src={`https://github-readme-stats.vercel.app/api?username=${GithubId}&theme=shadow_green&hide_border=true&include_all_commits=false&count_private=false`}
                 style={{ height: "11rem" }}
               />
-
-              {/* <LcContest LeetcodeId="jatinxkirito" />
-              <ProgressBar LeetcodeId="jatinxkirito" /> */}
             </div>
             <div
               style={{
                 display: "flex",
                 flexWrap: "wrap",
-                //alignItems: "center",
                 justifyContent: "space-between",
               }}
             >
@@ -114,7 +108,6 @@ export default function Github({ GithubId = undefined }) {
                 src={`https://github-readme-stats.vercel.app/api/top-langs/?username=${GithubId}&theme=shadow_green&hide_border=true&include_all_commits=false&count_private=false&layout=compact`}
               />
             </div>
-            {/* <LcGraph LeetcodeId="jatinxkirito" /> */}
             <img
               src={`https://ghchart.rshah.org/${GithubId}`}
               alt={`${GithubId}'s contribution heatmap`}

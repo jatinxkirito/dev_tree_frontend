@@ -19,24 +19,20 @@ export default function ImageUploader({
   const [croppedArea, setCroppedArea] = useState(null);
   const onCropComplete = (croppedAreaPercentage, croppedAreaPixels) => {
     setCroppedArea(croppedAreaPixels);
-    // console.log(croppedAreaPercentage, croppedAreaPixels);
   };
   const uploadImage = async (image) => {
     const data = new FormData();
     data.append("file", image);
-    data.append("upload_preset", "devtree_profile");
-    data.append("cloud_name", "dd9t8dh5w");
+    data.append("upload_preset", import.meta.env.VITE_CLOUDINARY_PRESET);
+    data.append("cloud_name", import.meta.env.VITE_CLOUD_NAME);
     toggleeditWindow();
     try {
-      const res = await fetch(
-        "https://api.cloudinary.com/v1_1/dd9t8dh5w/image/upload",
-        {
-          method: "post",
-          body: data,
-        }
-      );
+      const res = await fetch(import.meta.env.VITE_UPLOAD_LINK, {
+        method: "post",
+        body: data,
+      });
       const ans = await res.json();
-      //if (imgId) await cloudinary.uploader.destroy(imgId);
+
       await updateImage(ans.url, ans.public_id).then((res) => {
         setTimeout(() => window.location.reload(false), 2000);
         gotToHome();
@@ -47,14 +43,14 @@ export default function ImageUploader({
   };
   const onCropFinal = async () => {
     const canvas = document.createElement("canvas");
-    //console.log(croppedArea);
+
     canvas.width = croppedArea.width;
     canvas.height = croppedArea.height;
-    //console.log(canvas);
+
     const context = canvas.getContext("2d");
     let imgObj = new Image();
     imgObj.src = userImage;
-    // console.log(imgObj);
+
     imgObj.onload = async function () {
       context.drawImage(
         imgObj,
@@ -67,8 +63,7 @@ export default function ImageUploader({
         croppedArea.width,
         croppedArea.height
       );
-      //console.log(context.getImageData(0, 0, canvas.width, canvas.height));
-      //console.log(canvas);
+
       const dataUrl = canvas.toDataURL("image/jpeg");
 
       await uploadImage(dataUrl);
@@ -85,7 +80,7 @@ export default function ImageUploader({
         setErr("File size can't exceed 10mb");
         return;
       }
-      //console.log("pikachu", URL.createObjectURL(e.target.files[0]), userImage);
+
       setUserImage(URL.createObjectURL(e.target.files[0]));
     }
   };
@@ -116,8 +111,6 @@ export default function ImageUploader({
         <CloseRounded />
       </button>
       <Cropper
-        //cropSize={{ height: "20rem" }}
-
         cropShape={shape}
         style={{
           containerStyle: {

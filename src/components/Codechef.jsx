@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 
 import ccs from "../assets/Codechef.png";
-//import crypto from "crypto";
+
 import Container from "./Container";
 import Graph from "./graph";
 import { CircularProgress } from "@mui/material";
@@ -38,18 +38,17 @@ export default function Cc({ CcId }) {
     return ct.rating;
   });
 
-  //console.log(contestRating.at(-1));
   let maxRating = Math.max(...contestRating);
   const tm = data.ratingData.map((ct) => {
     return new Date(Date.parse(ct.end_date));
   });
-  //console.log(tm);
+
   return (
     <Container>
       <div
         style={{
           display: "flex",
-          // justifyContent: "center",
+
           flexDirection: "column",
           borderWidth: "0.15rem",
           borderColor: "#052e16",

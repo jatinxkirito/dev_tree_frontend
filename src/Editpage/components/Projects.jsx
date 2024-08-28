@@ -16,9 +16,7 @@ export default function ProjectForm() {
   const [data, setData] = useState({ state: -2 });
   let del = [];
 
-  //console.log("pikachu");
   useEffect(() => {
-    //console.log("baby");
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/api/${name}/projects`)
       .then((res) => {
@@ -52,7 +50,7 @@ export default function ProjectForm() {
         <ErrorC />
       </div>
     );
-  //console.log(data);
+
   if (!data.lst) return <ErrorC />;
   var lst = data.lst;
 
@@ -117,8 +115,6 @@ export default function ProjectForm() {
               50
             );
             setTimeout(() => window.location.reload(false), 300);
-
-            // console.log(data.profile.picture);
           } catch (err) {
             setData((prev) => ({ ...prev, state: -1 }));
             setTimeout(

@@ -1,7 +1,5 @@
-import { Avatar, Box, CircularProgress } from "@mui/material";
+import { Avatar, CircularProgress } from "@mui/material";
 import Container from "../components/Container";
-
-import dp from "../assets/krto.png";
 
 import "../App.css";
 import { GitHub, LinkedIn, MailRounded } from "@mui/icons-material";
@@ -47,7 +45,7 @@ export default function Home() {
         src={data.data.picture}
         alt={data.data.name}
         sx={{ height: "8rem", width: "8rem" }}
-        className="shadow-lg shadow-gray-800"
+        className="shadow-md shadow-gray-800"
       />
       <div
         style={{

@@ -4,14 +4,10 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
 import "./AppBar.css";
 import { SpaRounded } from "@mui/icons-material";
 import { useCookies } from "react-cookie";
@@ -19,8 +15,6 @@ import { decryptIt } from "./auth/crypt";
 import axios from "axios";
 import { googleAuth } from "./auth/googleAuth";
 import { useNavigate } from "react-router-dom";
-const pages = ["Products", "Pricing", "Blog"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 export default function ResponsiveAppBar() {
   const [cookies, setCookie] = useCookies(["userDevtree"]);
@@ -35,12 +29,9 @@ export default function ResponsiveAppBar() {
       axios
         .get(`${import.meta.env.VITE_BACKEND_URL}/api/${x}/image`)
         .then((res) => {
-          //setName(x);
           setIco(res.data.data.picture);
-          console.log(res);
         })
         .catch((err) => {
-          console.log(err);
           setIco("Error");
         });
     }
@@ -58,7 +49,6 @@ export default function ResponsiveAppBar() {
               display: { xs: "none", md: "flex" },
               mr: 1,
               fontSize: "2rem",
-              // marginLeft: "1rem",
             }}
           />
           <button
@@ -112,7 +102,7 @@ export default function ResponsiveAppBar() {
                 borderRadius: "1rem",
                 borderWidth: "0.1rem",
                 backgroundColor: "#10b981",
-                // fontWeight: "bold",
+
                 fontSize: "1rem",
 
                 "&:hover": {
@@ -124,7 +114,7 @@ export default function ResponsiveAppBar() {
                 window.location = googleAuth();
               }}
             >
-              Sign In
+              Create your own
             </Button>
           )}
           {cookies.userDevtree && (

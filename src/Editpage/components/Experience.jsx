@@ -101,9 +101,8 @@ export default function ExperienceForm() {
               `${import.meta.env.VITE_BACKEND_URL}/api/${name}`,
               { work: newLst }
             );
-            // window.location.reload(false);
+
             setData({ ...data, loading: false });
-            // setData((prev) => ({ ...prev, state: -1 }));
 
             setTimeout(
               () =>
@@ -121,8 +120,6 @@ export default function ExperienceForm() {
               50
             );
             setTimeout(() => window.location.reload(false), 300);
-
-            // console.log(data.profile.picture);
           } catch (err) {
             setData({ ...data, loading: false });
             setTimeout(

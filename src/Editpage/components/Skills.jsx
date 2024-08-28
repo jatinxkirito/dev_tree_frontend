@@ -13,9 +13,7 @@ export default function SkillsForm() {
 
   const [data, setData] = useState({ loading: true });
 
-  //console.log("pikachu");
   useEffect(() => {
-    //console.log("baby");
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/api/${name}/skills`)
       .then((res) => {
@@ -49,11 +47,9 @@ export default function SkillsForm() {
         <ErrorC />
       </div>
     );
-  //console.log(data);
+
   if (!data.lst) return <ErrorC />;
   var lst = data.lst;
-  //console.log(data);
-  //var lst = data.data.education;
 
   return (
     <>
@@ -79,7 +75,7 @@ export default function SkillsForm() {
             const Achievements = document.querySelectorAll(".Achievment");
 
             var newLst = [];
-            //console.log(Company.length);
+
             for (let i of Achievements) {
               newLst.push(i.value);
             }
@@ -88,9 +84,8 @@ export default function SkillsForm() {
               `${import.meta.env.VITE_BACKEND_URL}/api/${name}`,
               { skills: newLst }
             );
-            // window.location.reload(false);
+
             setData({ ...data, loading: false });
-            // setData((prev) => ({ ...prev, state: -1 }));
 
             setTimeout(
               () =>
@@ -108,8 +103,6 @@ export default function SkillsForm() {
               50
             );
             setTimeout(() => window.location.reload(false), 300);
-
-            // console.log(data.profile.picture);
           } catch (err) {
             setData({ ...data, loading: false });
             setTimeout(

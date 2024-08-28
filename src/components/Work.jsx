@@ -86,8 +86,6 @@ function Exp({ data, tr }) {
             }}
           >
             {data.description}
-            {/* Techstack:{"  "}
-            <p style={{ color: "#052e16", fontWeight: "bold" }}>{data.Score}</p> */}
           </div>
         </div>
       </TimelineContent>
@@ -103,7 +101,7 @@ export default function Work() {
         (res) => res.json()
       ),
   });
-  //console.log(data);
+
   if (isLoading)
     return (
       <div>

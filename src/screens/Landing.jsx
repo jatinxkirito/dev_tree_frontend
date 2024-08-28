@@ -13,7 +13,7 @@ export default function LandingScreen() {
   useEffect(() => {
     if (cookies.userDevtree) {
       const p = decryptIt(cookies.userDevtree);
-      // console.log(p);
+
       navigate(`/${p}`);
     }
   });

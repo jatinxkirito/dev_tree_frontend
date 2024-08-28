@@ -6,7 +6,6 @@ import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import SchoolRoundedIcon from "@mui/icons-material/SchoolRounded";
 import { LaptopRounded, WorkRounded } from "@mui/icons-material";
-//import "./index.css";
 
 export default function LabelBottomNavigation() {
   const { name } = useParams();
@@ -44,12 +43,10 @@ export default function LabelBottomNavigation() {
       <BottomNavigationAction
         label="Home"
         value="Home"
-        //sx={{ borderRadius: "1.5rem" }}
         icon={<HomeRoundedIcon />}
         onClick={() => {
           navigate(`/${name}`);
         }}
-        // sx={{ color: "#047857" }}
       />
       <BottomNavigationAction
         label="Proffesional"

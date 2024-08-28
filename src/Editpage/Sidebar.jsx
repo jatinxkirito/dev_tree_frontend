@@ -19,7 +19,7 @@ export default function SideBar() {
   React.useEffect(() => {
     const pt = currentPath.split("/");
     console.log(pt);
-    // let v = "Home";
+
     let v = pt[pt.length - 1];
     setActive(v);
   }, [currentPath]);

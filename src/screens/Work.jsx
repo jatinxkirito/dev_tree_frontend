@@ -25,8 +25,7 @@ export default function Work() {
     );
   if (!data || !data.data || error) return <ErrorC />;
   if (data) github = data.data.github;
-  // const { navigation } = this.props;
-  // const username = navigation.getParam("comp", {});
+
   return (
     <div>
       {github && github != "" && (

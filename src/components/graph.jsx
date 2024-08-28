@@ -13,7 +13,6 @@ export default function Graph({ data, xseries }) {
         marginInline: "auto",
         marginTop: "1rem",
         height: "18rem",
-        // aspectRatio: 5 / 16,
       }}
     >
       <LineChart
@@ -24,12 +23,7 @@ export default function Graph({ data, xseries }) {
             color: "#052e16",
           },
         ]}
-        // height={300}
-        // margin={{ left: 30, right: 30, top: 30, bottom: 30 }}
-        //grid={{ vertical: true, horizontal: true }}
-        //leftAxis={null}
         rightAxis={null}
-        // bottomAxis={null}
         disableAxisListener
       />
     </div>

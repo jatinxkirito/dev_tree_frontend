@@ -6,9 +6,10 @@ import { useCookies } from "react-cookie";
 import { encryptIt } from "./crypt";
 import { Bounce, toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { CircularProgress } from "@mui/material";
+import ErrorC from "../utils/ErrorC";
 const REDIRECT_URI = "http://localhost:5173/auth/google/callback";
 export const googleAuth = () => {
-  //console.log(import.meta.env.VITE_CLIENT_ID);
   const url = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${
     import.meta.env.VITE_CLIENT_ID
   }&redirect_uri=${REDIRECT_URI}&response_type=code&scope=profile email`;
@@ -25,13 +26,12 @@ export function GoogleCallback() {
       const { data } = await axios.get(
         `${import.meta.env.VITE_BACKEND_URL}/auth/google/callback?code=${code}`
       );
-      console.log(data);
+
       const x = await axios.get(
         `${import.meta.env.VITE_BACKEND_URL}/api/getUser/${data.profile.email}`
       );
-      console.log(x.data.status);
+
       if (x.data.status == "userExists") {
-        // console.log(x.data.data);
         setCookie("userDevtree", encryptIt(x.data.data.username), {
           path: "/",
           expires: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000),
@@ -44,11 +44,8 @@ export function GoogleCallback() {
     },
   });
 
-  if (isLoading) return <div>Loading</div>;
-  console.log(error);
-  if (error || !data) return <div>error</div>;
-  console.log(data);
-  // if (data.status == "userExists") Navigate(`/${data.username}`);
+  if (isLoading) return <CircularProgress color="inherit" />;
+  if (error || !data) return <ErrorC />;
 
   return (
     <>
@@ -72,7 +69,7 @@ export function GoogleCallback() {
             e.preventDefault();
             const dat = new FormData(e.target);
             let x = Object.fromEntries(dat);
-            // console.log(data.profile.picture);
+
             x.picture = data.profile.picture;
             x.googleId = data.profile.id;
             console.log(x);
@@ -114,8 +111,6 @@ export function GoogleCallback() {
         }}
         style={{
           color: "#10b981",
-          // borderColor: "#049363",
-          // borderWidth: "0.05rem",
         }}
       >
         <SpaRounded sx={{ color: "#10b981", fontSize: "5rem" }} />
@@ -208,5 +203,4 @@ export function GoogleCallback() {
     </>
   );
   // Code to handle user authentication and retrieval using the profile data
-  //return res.status(200).json({ data });
 }

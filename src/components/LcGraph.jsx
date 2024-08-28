@@ -10,8 +10,7 @@ export default function LcGraph({ LeetcodeId }) {
         `https://alfa-leetcode-api.onrender.com/${LeetcodeId}/contest`
       ).then((res) => res.json()),
   });
-  //console.log(LeetcodeId);
-  //console.log(data);
+
   if (isLoading) return <CircularProgress color="inherit" />;
   if (data.contestParticipation.length == 0) return <></>;
 

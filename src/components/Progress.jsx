@@ -1,3 +1,4 @@
+import { CircularProgress } from "@mui/material";
 import { PieChart } from "@mui/x-charts";
 import { useQuery } from "@tanstack/react-query";
 
@@ -26,7 +27,11 @@ function ProgressBar({ LeetcodeId }) {
 
   return (
     <div>
-      {isLoading && <div>Loading...</div>}
+      {isLoading && (
+        <div>
+          <CircularProgress color="inherit" />
+        </div>
+      )}
       {!isLoading && (
         <div
           style={{

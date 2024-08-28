@@ -89,7 +89,7 @@ export default function HomeForm() {
             marginRight: "auto",
             marginBottom: "1rem",
           }}
-          className="shadow-lg shadow-gray-800"
+          className="shadow-md shadow-gray-800"
         />
         <button
           onClick={() => {
@@ -123,9 +123,8 @@ export default function HomeForm() {
                     document.getElementsByClassName("description")[0].value,
                 }
               );
-              // window.location.reload(false);
+
               toggleeditWindow("home");
-              // setData((prev) => ({ ...prev, state: -1 }));
 
               setTimeout(
                 () =>
@@ -143,8 +142,6 @@ export default function HomeForm() {
                 50
               );
               setTimeout(() => window.location.reload(false), 300);
-
-              // console.log(data.profile.picture);
             } catch (err) {
               toggleeditWindow("home");
               setTimeout(
