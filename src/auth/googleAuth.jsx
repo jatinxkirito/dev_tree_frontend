@@ -18,6 +18,7 @@ export const googleAuth = () => {
 export function GoogleCallback() {
   const params = new URLSearchParams(window.location.search);
   const code = params.get("code");
+  console.log(code);
   const navigate = useNavigate();
   const [cookies, setCookie] = useCookies(["userDevtree"]);
   const { isLoading, error, data } = useQuery({
