@@ -40,7 +40,7 @@ export default function ProjectForm() {
       });
   }, []);
 
-  if (data.loading == -2)
+  if (data.state == -2)
     return (
       <div>
         <CircularProgress color="inherit" />
@@ -76,7 +76,7 @@ export default function ProjectForm() {
         onSubmit={async function (e) {
           try {
             e.preventDefault();
-
+            setData((prev) => ({ ...prev, state: -2 }));
             const Name = document.querySelectorAll(".Name");
             const github = document.querySelectorAll(".github");
             const live = document.querySelectorAll(".live");
@@ -98,33 +98,44 @@ export default function ProjectForm() {
               `${import.meta.env.VITE_BACKEND_URL}/api/updateProject/${name}`,
               { projects: newLst }
             );
-            // window.location.reload(false);
-            // setData({ ...data, state: -2 });
 
-            toast.success("Update Successful!", {
-              position: "top-center",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "light",
-              transition: Bounce,
-            });
-            //console.log(df); // console.log(data.profile.picture);
+            setData((prev) => ({ ...prev, state: -1 }));
+
+            setTimeout(
+              () =>
+                toast.success("Update Successful!", {
+                  position: "top-center",
+                  autoClose: 5000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "light",
+                  transition: Bounce,
+                }),
+              50
+            );
+            setTimeout(() => window.location.reload(false), 300);
+
+            // console.log(data.profile.picture);
           } catch (err) {
-            toast.error("Couldn't update data", {
-              position: "top-center",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "light",
-              transition: Bounce,
-            });
+            setData((prev) => ({ ...prev, state: -1 }));
+            setTimeout(
+              () =>
+                toast.error("Couldn't update data", {
+                  position: "top-center",
+                  autoClose: 5000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "light",
+                  transition: Bounce,
+                }),
+              50
+            );
           }
         }}
       >
@@ -168,6 +179,7 @@ export default function ProjectForm() {
                             projects: lst,
                           }
                         );
+
                         toast.success("Image Update Successful!", {
                           position: "top-center",
                           autoClose: 5000,
@@ -326,7 +338,7 @@ export default function ProjectForm() {
                 type="text"
                 className="description"
                 name="description"
-                maxLength="400"
+                maxLength="375"
                 rows="5"
                 style={{
                   width: "100%",

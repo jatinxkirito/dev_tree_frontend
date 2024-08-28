@@ -18,12 +18,13 @@ import { useCookies } from "react-cookie";
 import { decryptIt } from "./auth/crypt";
 import axios from "axios";
 import { googleAuth } from "./auth/googleAuth";
+import { useNavigate } from "react-router-dom";
 const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 export default function ResponsiveAppBar() {
   const [cookies, setCookie] = useCookies(["userDevtree"]);
-
+  const navigate = useNavigate();
   const [ico, setIco] = React.useState("Loading");
 
   React.useEffect(() => {
@@ -60,24 +61,29 @@ export default function ResponsiveAppBar() {
               // marginLeft: "1rem",
             }}
           />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              fontSize: "1.5rem",
-              display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 800,
-              letterSpacing: ".4rem",
-              color: "inherit",
-              textDecoration: "none",
-              marginLeft: "1rem",
+          <button
+            onClick={() => {
+              navigate("/meetthemaker");
             }}
           >
-            DEV-TREE
-          </Typography>
+            <Typography
+              variant="h6"
+              noWrap
+              component="a"
+              sx={{
+                fontSize: "1.5rem",
+                display: { xs: "none", md: "flex" },
+                fontFamily: "monospace",
+                fontWeight: 800,
+                letterSpacing: ".4rem",
+                color: "inherit",
+                textDecoration: "none",
+                marginLeft: "1rem",
+              }}
+            >
+              DEV-TREE
+            </Typography>
+          </button>
 
           <SpaRounded sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Typography
@@ -125,7 +131,7 @@ export default function ResponsiveAppBar() {
             <Tooltip title="Open settings">
               <IconButton
                 onClick={() => {
-                  console.log("Get clicking");
+                  navigate(`/${decryptIt(cookies.userDevtree)}/edit/`);
                 }}
                 sx={{ p: 0, height: "1.5rem" }}
               >

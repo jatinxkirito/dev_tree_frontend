@@ -10,6 +10,9 @@ import SideBar from "./Sidebar";
 import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import { decryptIt } from "../auth/crypt";
+import Logout from "../components/Logout";
+import Goback from "../components/Goback";
+import Know from "../components/Know";
 export default function EditLayout() {
   const [cookies, setCookie] = useCookies(["userDevtree"]);
   const { name } = useParams();
@@ -46,6 +49,19 @@ export default function EditLayout() {
           }}
         >
           <Outlet />
+        </div>
+        <div
+          style={{
+            position: "fixed",
+            right: "2rem",
+            bottom: "4vh",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <Goback />
+          <Know />
+          <Logout />
         </div>
       </div>
     </body>

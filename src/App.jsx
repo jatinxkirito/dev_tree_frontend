@@ -23,6 +23,7 @@ import SkillsForm from "./Editpage/components/Skills.jsx";
 import ProjectForm from "./Editpage/components/Projects.jsx";
 import { ErrorBoundary } from "react-error-boundary";
 import Protection from "./utils/NotFound.jsx";
+import Me from "./components/Me.jsx";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -33,6 +34,10 @@ const queryClient = new QueryClient({
 });
 
 const router = createBrowserRouter([
+  {
+    path: "/meetthemaker",
+    Component: Me,
+  },
   {
     path: "/auth/google/callback",
     errorElement: <Protection />,

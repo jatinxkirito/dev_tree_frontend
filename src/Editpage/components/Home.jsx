@@ -110,7 +110,7 @@ export default function HomeForm() {
           onSubmit={async function (e) {
             try {
               e.preventDefault();
-              // toggleeditWindow("load");
+              toggleeditWindow("load");
               const df = await axios.patch(
                 `${import.meta.env.VITE_BACKEND_URL}/api/${name}`,
                 {
@@ -124,30 +124,44 @@ export default function HomeForm() {
                 }
               );
               // window.location.reload(false);
-              //  toggleeditWindow("home");
-              toast.success("Update Successful!", {
-                position: "top-center",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-                transition: Bounce,
-              }); // console.log(data.profile.picture);
+              toggleeditWindow("home");
+              // setData((prev) => ({ ...prev, state: -1 }));
+
+              setTimeout(
+                () =>
+                  toast.success("Update Successful!", {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    transition: Bounce,
+                  }),
+                50
+              );
+              setTimeout(() => window.location.reload(false), 300);
+
+              // console.log(data.profile.picture);
             } catch (err) {
-              toast.error("Couldn't update data", {
-                position: "top-center",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-                transition: Bounce,
-              });
+              toggleeditWindow("home");
+              setTimeout(
+                () =>
+                  toast.error("Couldn't update data", {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    transition: Bounce,
+                  }),
+                50
+              );
             }
           }}
         >

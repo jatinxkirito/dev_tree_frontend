@@ -73,6 +73,7 @@ export default function CodingForm() {
         onSubmit={async function (e) {
           try {
             e.preventDefault();
+            setData({ ...data, loading: true });
             const dat = new FormData(e.target);
             let x = Object.fromEntries(dat);
             if (x.codeforces == "") x.codeforces = undefined;
@@ -83,30 +84,44 @@ export default function CodingForm() {
               x
             );
             //  window.location.reload(false);
-            toast.success("Update Successful!", {
-              position: "top-center",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "light",
-              transition: Bounce,
-            });
+            setData({ ...data, loading: false });
+            // setData((prev) => ({ ...prev, state: -1 }));
+
+            setTimeout(
+              () =>
+                toast.success("Update Successful!", {
+                  position: "top-center",
+                  autoClose: 5000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "light",
+                  transition: Bounce,
+                }),
+              50
+            );
+            setTimeout(() => window.location.reload(false), 300);
+
             // console.log(data.profile.picture);
           } catch (err) {
-            toast.error("Couldn't update data", {
-              position: "top-center",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "light",
-              transition: Bounce,
-            });
+            setData({ ...data, loading: false });
+            setTimeout(
+              () =>
+                toast.error("Couldn't update data", {
+                  position: "top-center",
+                  autoClose: 5000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "light",
+                  transition: Bounce,
+                }),
+              50
+            );
           }
         }}
       >

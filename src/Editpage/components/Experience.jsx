@@ -74,6 +74,7 @@ export default function ExperienceForm() {
         style={{ width: "100%" }}
         onSubmit={async function (e) {
           try {
+            setData({ ...data, loading: true });
             e.preventDefault();
             const Company = document.querySelectorAll(".Company");
             const Job = document.querySelectorAll(".Job");
@@ -83,7 +84,7 @@ export default function ExperienceForm() {
             const Experience = document.querySelectorAll(".Experience");
             const Location = document.querySelectorAll(".Location");
             var newLst = [];
-            console.log(Company.length);
+
             for (let i = 0; i < Company.length; i++) {
               newLst.push({
                 startDate: From[i].value,
@@ -101,29 +102,44 @@ export default function ExperienceForm() {
               { work: newLst }
             );
             // window.location.reload(false);
-            toast.success("Update Successful!", {
-              position: "top-center",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "light",
-              transition: Bounce,
-            }); // console.log(data.profile.picture);
+            setData({ ...data, loading: false });
+            // setData((prev) => ({ ...prev, state: -1 }));
+
+            setTimeout(
+              () =>
+                toast.success("Update Successful!", {
+                  position: "top-center",
+                  autoClose: 5000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "light",
+                  transition: Bounce,
+                }),
+              50
+            );
+            setTimeout(() => window.location.reload(false), 300);
+
+            // console.log(data.profile.picture);
           } catch (err) {
-            toast.error("Couldn't update data", {
-              position: "top-center",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "light",
-              transition: Bounce,
-            });
+            setData({ ...data, loading: false });
+            setTimeout(
+              () =>
+                toast.error("Couldn't update data", {
+                  position: "top-center",
+                  autoClose: 5000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "light",
+                  transition: Bounce,
+                }),
+              50
+            );
           }
         }}
       >

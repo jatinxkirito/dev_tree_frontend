@@ -38,11 +38,11 @@ export default function ImageUploader({
       const ans = await res.json();
       //if (imgId) await cloudinary.uploader.destroy(imgId);
       await updateImage(ans.url, ans.public_id).then((res) => {
-        window.location.reload(false);
+        setTimeout(() => window.location.reload(false), 2000);
         gotToHome();
       });
     } catch (err) {
-      console.log(err);
+      gotToHome();
     }
   };
   const onCropFinal = async () => {

@@ -87,7 +87,7 @@ export default function Home() {
           <IconLink
             Component={MailRounded}
             color="#047857"
-            link="mailto:sjmadaan143@gmail.com"
+            link={`mailto:${data.data.email}`}
           />
         )}
         {data.data.github && (
