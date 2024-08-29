@@ -52,7 +52,7 @@ export default function LabelBottomNavigation() {
       <BottomNavigationAction
         label="Proffesional"
         value="education"
-        icon={<SchoolRoundedIcon />}
+        icon={<SchoolRoundedIcon sx={{ color: "#047857" }} />}
         onClick={() => {
           navigate(`/${name}/education`);
         }}
