@@ -63,17 +63,18 @@ export default function Cp() {
           <Cf CfId={data.data.codeforces} />
         </>
       )}
-      <img
-        src={cc}
-        style={{
-          width: "16rem",
-          height: "auto",
-          marginBottom: "2rem",
-          marginInline: "auto",
-        }}
-      />
+
       {data.data.codechef && data.data.codechef != "" && (
         <>
+          <img
+            src={cc}
+            style={{
+              width: "16rem",
+              height: "auto",
+              marginBottom: "2rem",
+              marginInline: "auto",
+            }}
+          />
           <Cc CcId={data.data.codechef} />
         </>
       )}

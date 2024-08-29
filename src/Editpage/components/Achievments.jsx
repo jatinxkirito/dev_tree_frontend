@@ -124,7 +124,7 @@ export default function AchievementForm() {
           }
         }}
       >
-        <h1 style={{ fontSize: "2rem", fontWeight: "bold" }}>Achievments</h1>
+        <h1 style={{ fontSize: "2rem", fontWeight: "bold" }}>Achievements</h1>
         <hr style={{ backgroundColor: "#047857" }} />
         {lst.length == 0 && <NY />}
         {lst.map((item, index) => {

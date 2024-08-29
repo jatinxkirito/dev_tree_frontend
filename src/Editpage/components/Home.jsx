@@ -85,6 +85,7 @@ export default function HomeForm() {
           sx={{
             height: "8rem",
             width: "8rem",
+            marginTop: "1rem",
             marginLeft: "auto",
             marginRight: "auto",
             marginBottom: "1rem",

@@ -85,8 +85,8 @@ export default function ProjectForm() {
             for (let i = 0; i < Name.length; i++) {
               newLst.push({
                 name: Name[i].value,
-                github: github[i].value,
-                live: live[i].value,
+                githubLink: github[i].value,
+                hostedLink: live[i].value,
                 description: description[i].value,
                 image: lst[i].image ? lst[i].image._id : undefined,
               });

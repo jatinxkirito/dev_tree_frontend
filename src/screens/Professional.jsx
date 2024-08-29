@@ -41,7 +41,7 @@ export default function Professional() {
           marginBottom: "0.5rem",
         }}
       >
-        Achievments
+        Achievements
       </div>
       <Achievments />
     </>

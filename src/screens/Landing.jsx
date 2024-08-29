@@ -80,7 +80,7 @@ export default function LandingScreen() {
         easy to show case work and skills. With various integrations including
         platforms like github, codeforces, leetcode, codechef a good first
         expression is right here. Sign up to create your own{" "}
-        <p style={{ color: "#10b981", fontWeight: "bold" }}>DEV-TREE</p>.
+        <p style={{ color: "#10b981", fontWeight: "bold" }}>DEV-TREE</p>
       </div>
       <Button
         variant="contained"

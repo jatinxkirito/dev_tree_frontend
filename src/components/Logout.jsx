@@ -10,7 +10,7 @@ export default function Logout() {
     <Tooltip title="Logout">
       <IconButton
         onClick={() => {
-          removeCookie("userDevtree");
+          removeCookie("userDevtree", { path: "/" });
           navigate("/");
         }}
         sx={{
