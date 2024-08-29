@@ -35,6 +35,7 @@ export default function LabelBottomNavigation() {
         position: "sticky",
         bottom: "1rem",
         height: "fit-content",
+        color: "#047857",
       }}
       value={value}
       onChange={handleChange}
