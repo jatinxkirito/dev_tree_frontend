@@ -3,12 +3,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 ::-webkit-scrollbar {
   display: none;
 }
-a:active {
-  color: #0e6c0d;
-}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -24,14 +23,17 @@ a:active {
   animation: none;
   color: #0e6c0d;
 }
-.css-1bjk3jo-MuiButtonBase-root-MuiBottomNavigationAction-root {
+/* .css-1bjk3jo-MuiButtonBase-root-MuiBottomNavigationAction-root { */
+.MuiButtonBase-root-MuiBottomNavigationAction-root {
   color: #0e6c0d;
 }
-.css-118p9r0-MuiButtonBase-root-MuiBottomNavigationAction-root {
+/* .css-118p9r0-MuiButtonBase-root-MuiBottomNavigationAction-root { */
+.MuiButtonBase-root-MuiBottomNavigationAction-root {
   animation: none;
   color: #0e6c0d;
 }
-.css-i4bv87-MuiSvgIcon-root {
+/* .css-i4bv87-MuiSvgIcon-root { */
+.MuiSvgIcon-root {
   animation: none;
   transition: none;
 }
