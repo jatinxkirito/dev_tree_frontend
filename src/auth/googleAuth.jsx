@@ -8,7 +8,7 @@ import { Bounce, toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { CircularProgress } from "@mui/material";
 import ErrorC from "../utils/ErrorC";
-const REDIRECT_URI = `https://dev-tree.netlify.app/auth/google/callback`;
+const REDIRECT_URI = `https://dev-tree-frontend.vercel.app/auth/google/callback`;
 export const googleAuth = () => {
   const url = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${
     import.meta.env.VITE_CLIENT_ID
