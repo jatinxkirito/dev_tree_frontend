@@ -20,20 +20,20 @@
 }
 
 .Mui-selected {
-  animation: none;
-  color: #0e6c0d;
+  animation: none !important;
+  color: #0e6c0d !important;
 }
 /* .css-1bjk3jo-MuiButtonBase-root-MuiBottomNavigationAction-root { */
 .MuiButtonBase-root-MuiBottomNavigationAction-root {
-  color: #0e6c0d;
+  color: #0e6c0d !important;
 }
 /* .css-118p9r0-MuiButtonBase-root-MuiBottomNavigationAction-root { */
 .MuiButtonBase-root-MuiBottomNavigationAction-root {
-  animation: none;
-  color: #0e6c0d;
+  animation: none !important;
+  color: #0e6c0d !important;
 }
 /* .css-i4bv87-MuiSvgIcon-root { */
 .MuiSvgIcon-root {
-  animation: none;
-  transition: none;
+  animation: none !important;
+  transition: none !important;
 }
