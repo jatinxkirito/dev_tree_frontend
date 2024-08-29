@@ -22,18 +22,22 @@
 .Mui-selected {
   animation: none !important;
   color: #0e6c0d !important;
+  border-radius: 1.5rem !important;
 }
 /* .css-1bjk3jo-MuiButtonBase-root-MuiBottomNavigationAction-root { */
 .MuiButtonBase-root-MuiBottomNavigationAction-root {
   color: #0e6c0d !important;
+  border-radius: 1.5rem !important;
 }
 /* .css-118p9r0-MuiButtonBase-root-MuiBottomNavigationAction-root { */
 .MuiButtonBase-root-MuiBottomNavigationAction-root {
-  animation: none !important;
+  animation: none;
   color: #0e6c0d !important;
+  border-radius: 1.5rem !important;
 }
 /* .css-i4bv87-MuiSvgIcon-root { */
 .MuiSvgIcon-root {
   animation: none !important;
   transition: none !important;
+  border-radius: 1.5rem !important;
 }
