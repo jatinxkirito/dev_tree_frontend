@@ -290,7 +290,7 @@ export default function ProjectForm() {
                   borderColor: "black",
                   padding: "0.5rem",
                 }}
-                placeholder="E.g. jatinxkirito"
+                placeholder="E.g. github-link"
                 defaultValue={item.githubLink ? item.githubLink : ""}
               />
               <label
@@ -316,7 +316,7 @@ export default function ProjectForm() {
                   borderColor: "black",
                   padding: "0.5rem",
                 }}
-                placeholder="E.g. link"
+                placeholder="E.g. hosted link"
                 defaultValue={item.hostedLink ? item.hostedLink : ""}
               />
               <label

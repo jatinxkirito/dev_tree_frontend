@@ -198,7 +198,7 @@ export default function CodingForm() {
               borderColor: "black",
               padding: "0.5rem",
             }}
-            placeholder="E.g. jatinxkirito"
+            placeholder="E.g. jatin_kirito"
             defaultValue={lst.codechef ? lst.codechef : ""}
           />
         </div>
