@@ -6,7 +6,9 @@
 ::-webkit-scrollbar {
   display: none;
 }
-
+a:active {
+  color: #0e6c0d;
+}
 #root {
   max-width: 1280px;
   margin: 0 auto;
