@@ -12,7 +12,7 @@ const lst = [
 ];
 const rdrs = ["", "edu", "exp", "prj", "cp", "acv", "skls"];
 export default function SideBar() {
-  let [active, setActive] = React.useState("Home");
+  let [active, setActive] = React.useState("");
   const navigate = useNavigate();
   const { name } = useParams();
   const currentPath = useLocation().pathname;
