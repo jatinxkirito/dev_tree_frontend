@@ -19,6 +19,7 @@ export default function Logout() {
           width: "2rem",
           margin: "0.5rem",
           color: "inherit",
+          backgroundColor: "#ffffff",
         }}
         className="shadow-md shadow-gray-800"
       >

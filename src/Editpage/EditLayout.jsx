@@ -4,7 +4,11 @@ import {
   useOutletContext,
   useParams,
 } from "react-router-dom";
-import { Padding } from "@mui/icons-material";
+import {
+  ArrowBackIosRounded,
+  ArrowForwardIosRounded,
+  Padding,
+} from "@mui/icons-material";
 import ResponsiveAppBar from "../AppBar";
 import SideBar from "./Sidebar";
 import { useEffect, useState } from "react";
@@ -13,10 +17,12 @@ import { decryptIt } from "../auth/crypt";
 import Logout from "../components/Logout";
 import Goback from "../components/Goback";
 import Know from "../components/Know";
+import { IconButton, Tooltip } from "@mui/material";
 export default function EditLayout() {
   const [cookies, setCookie] = useCookies(["userDevtree"]);
   const { name } = useParams();
   const [state, setState] = useState("loading");
+  const [clp, setclp] = useState(1);
   useEffect(() => {
     if (cookies.userDevtree) {
       const p = decryptIt(cookies.userDevtree);
@@ -36,12 +42,51 @@ export default function EditLayout() {
   return (
     <body className="flex items-center flex-col" style={{ padding: 0 }}>
       <ResponsiveAppBar />
-      <div style={{ display: "flex", flexDirection: "row", width: "80%" }}>
-        <SideBar />
+
+      <div style={{ display: "flex", flexDirection: "row", width: "95%" }}>
+        <div style={{ display: "inline-flex" }}>
+          {clp && <SideBar />}
+          <button onClick={() => setclp(!clp)}>
+            {clp && (
+              <Tooltip title="Collapse Navigation">
+                <IconButton
+                  sx={{
+                    p: 0,
+                    height: "2rem",
+                    width: "2rem",
+                    margin: "0.5rem",
+                    color: "inherit",
+                    backgroundColor: "#ffffff",
+                  }}
+                  className="shadow-md shadow-gray-800"
+                >
+                  <ArrowBackIosRounded />
+                </IconButton>
+              </Tooltip>
+            )}
+            {!clp && (
+              <Tooltip title="open Navigation">
+                <IconButton
+                  sx={{
+                    p: 0,
+                    height: "2rem",
+                    width: "2rem",
+                    margin: "0.5rem",
+                    backgroundColor: "#ffffff",
+                    color: "inherit",
+                  }}
+                  className="shadow-md shadow-gray-800"
+                >
+                  <ArrowForwardIosRounded />
+                </IconButton>
+              </Tooltip>
+            )}
+          </button>
+        </div>
         <div
           style={{
             overflowY: "scroll",
-            overflowX: "hidden",
+
             height: "85vh",
             width: "100%",
             paddingLeft: "2rem",

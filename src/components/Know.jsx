@@ -18,6 +18,7 @@ export default function Know() {
           width: "2rem",
           margin: "0.5rem",
           color: "inherit",
+          backgroundColor: "#ffffff",
         }}
         className="shadow-md shadow-gray-800"
       >

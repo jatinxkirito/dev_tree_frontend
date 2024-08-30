@@ -25,7 +25,12 @@ export default function SideBar() {
   }, [currentPath]);
   return (
     <div
-      style={{ height: "15.5rem", display: "flex", flexDirection: "column" }}
+      style={{
+        height: "15.5rem",
+        display: "flex",
+        flexDirection: "column",
+        zIndex: "1000",
+      }}
     >
       {lst.map((rdr, i) => {
         return (
