@@ -1,10 +1,10 @@
-import { Avatar } from "@mui/material";
+import { Avatar, Button } from "@mui/material";
 import Container from "./Container";
 import { LinkedIn, MailRounded } from "@mui/icons-material";
 import IconLink from "./IconLink";
 import dp from "../assets/dp.jpg";
-import qr from "../assets/greed.jpg";
 import ResponsiveAppBar from "../AppBar";
+import Coffee from "../utils/Buymecoffee";
 export default function Me() {
   return (
     <>
@@ -75,9 +75,9 @@ export default function Me() {
           />
         </div>
         <div style={{ marginTop: "2rem", color: "black" }}>
-          And if you like the product, you can buy me a coffee as thanks 😉
+          And if you like the product, you can buy me a coffee 😉
         </div>
-        <img src={qr} style={{ height: "60vh" }} />
+        <Coffee />
       </Container>
     </>
   );

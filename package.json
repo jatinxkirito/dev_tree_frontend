@@ -29,8 +29,7 @@
     "react-easy-crop": "^5.0.8",
     "react-error-boundary": "^4.0.13",
     "react-router-dom": "^6.23.1",
-    "react-toastify": "^10.0.5",
-    "styled-components": "^6.1.11"
+    "react-toastify": "^10.0.5"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
