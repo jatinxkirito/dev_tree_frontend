@@ -131,7 +131,7 @@ export default function CodingForm() {
               fontWeight: "bold",
             }}
           >
-            LeetCode:
+            LeetCode_username:
           </label>
 
           <input
@@ -157,7 +157,7 @@ export default function CodingForm() {
               fontWeight: "bold",
             }}
           >
-            Codeforces:
+            Codeforces_username:
           </label>
 
           <input
@@ -183,7 +183,7 @@ export default function CodingForm() {
               fontWeight: "bold",
             }}
           >
-            Codechef:
+            Codechef_username:
           </label>
 
           <input

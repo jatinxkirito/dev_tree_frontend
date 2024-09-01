@@ -175,7 +175,8 @@ export default function HomeForm() {
               for="Name"
               style={{ fontSize: "1.1rem", fontWeight: "bold" }}
             >
-              Name:<span style={{ color: "white" }}>.......</span>
+              Name:
+              <span style={{ color: "white" }}>.........................</span>
             </label>
             <input
               type="text"
@@ -204,7 +205,10 @@ export default function HomeForm() {
             }}
           >
             <label for="job" style={{ fontSize: "1.1rem", fontWeight: "bold" }}>
-              Job:<span style={{ color: "white" }}>...........</span>
+              Job:
+              <span style={{ color: "white" }}>
+                .............................
+              </span>
             </label>
             <input
               type="text"
@@ -235,7 +239,8 @@ export default function HomeForm() {
               for="linkedin"
               style={{ fontSize: "1.1rem", fontWeight: "bold" }}
             >
-              linkedin:<span style={{ color: "white" }}>...</span>
+              linkedin:
+              <span style={{ color: "white" }}>.....................</span>
             </label>
             <input
               type="text"
@@ -266,7 +271,7 @@ export default function HomeForm() {
               for="github"
               style={{ fontSize: "1.1rem", fontWeight: "bold" }}
             >
-              github:<span style={{ color: "white" }}>.....</span>
+              github_username:<span style={{ color: "white" }}>.....</span>
             </label>
             <input
               type="text"
