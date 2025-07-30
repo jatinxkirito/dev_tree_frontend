@@ -6,14 +6,17 @@ Build your personal website as easily as filling out a job application — with 
 
 ## 🧩 Features
 
-- 🎯 **Intuitive UI**: Create and update your portfolio with zero coding knowledge.
-- 📝 **Easy Edit Access**: Make changes on the fly with simple form-like inputs.
+- 🎯 **Intuitive UI**: No-code portfolio builder with a clean and responsive interface.
+- 📝 **Easy Edit Access**: Update your content any time — just like filling a form.
 - ⚡ **Platform Integrations**:
   - ✅ Codeforces
   - ✅ LeetCode
   - ✅ CodeChef
   - ✅ GitHub
-- 🔐 **One-Click Auth**: Secure and seamless Google Authentication to get started instantly.
+- 🔐 **One-Click Auth**: Seamless Google Authentication.
+- 🌄 **Image Management**:
+  - Upload and store images using **Cloudinary**
+  - **Edit uploaded images** (crop, resize, rotate, etc.) directly within the app
 
 ---
 
